@@ -1,6 +1,4 @@
-nfindr <- function(hyper, p=NULL, iters=NULL) {
-  data <- hyper@data$spc
-  
+nfindr <- function(data, p=NULL, iters=NULL) {
   if (is.null(p)) {
     p <- hfc(data, 10^(-5))
   }
