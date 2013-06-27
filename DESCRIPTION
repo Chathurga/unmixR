@@ -4,7 +4,7 @@ Title: Provide unmixing algorithms for spectral images
 Version: 1.0
 Date: 2013-06-19
 Author: Conor McManus
-Maintainer: _ <_@_._>
+Maintainer: blank <blank@blank.blank>
 Description: Implements the N-FINDR and Vertex Component Analysis algorithms
     to recover pure component spectra and their respective concentrations
     from a set of measured spectra.
