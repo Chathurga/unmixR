@@ -1,12 +1,4 @@
-nfindr <- function(data, p=NULL, iters=NULL) {
-  if (is.null(p)) {
-    p <- hfc(data, 10^(-5))
-  }
-  
-  if (is.null(iters)) {
-    iters <- 3 * p
-  }
-  
+nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   dims <- dim(data)
   nvariables <- dims[1]
   nsamples <- dims[2]
