@@ -3,7 +3,7 @@
 ##' (-description-)
 ##' 
 ##' @param data Spectra matrix to examine
-##' @param False-alarm probability
+##' @param alpha False-alarm probability
 ##' @return (-return-)
 
 hfc <- function(data, alpha) {

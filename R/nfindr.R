@@ -3,7 +3,7 @@
 ##' (-description-)
 ##' 
 ##' @param data Spectra matrix to unmix
-##' @param p Number of endmembers (will be estimated using hfc if omitted)
+##' @param p Number of endmembers (will be estimated using \code{\link{hfc}} if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)
 ##' @return (-return-)
 

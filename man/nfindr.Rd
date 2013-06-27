@@ -8,7 +8,7 @@
   \item{data}{Spectra matrix to unmix}
 
   \item{p}{Number of endmembers (will be estimated using
-  hfc if omitted)}
+  \code{\link{hfc}} if omitted)}
 
   \item{iters}{Max number of iterations (defaults to 3 *
   p)}
