@@ -1,3 +1,12 @@
+##' N-FINDR (Michael E. Winter, 1999) unmixing algorithm
+##' 
+##' (-description-)
+##' 
+##' @param data Spectra matrix to unmix
+##' @param p Number of endmembers (will be estimated using hfc if omitted)
+##' @param iters Max number of iterations (defaults to 3 * p)
+##' @return (-return-)
+
 nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   dims <- dim(data)
   nvariables <- dims[1]
