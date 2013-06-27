@@ -7,7 +7,7 @@
 \arguments{
   \item{data}{Spectra matrix to examine}
 
-  \item{False-alarm}{probability}
+  \item{alpha}{False-alarm probability}
 }
 \value{
   (-return-)
