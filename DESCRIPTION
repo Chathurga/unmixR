@@ -1,9 +1,11 @@
 Package: spec.unmixing
 Type: Package
-Title: What the package does (short line)
+Title: Provide unmixing algorithms for spectral images
 Version: 1.0
 Date: 2013-06-19
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Conor McManus
+Maintainer: _ <_@_._>
+Description: Implements the N-FINDR and Vertex Component Analysis algorithms
+    to recover pure component spectra and their respective concentrations
+    from a set of measured spectra.
+License: GPL (>= 3)
