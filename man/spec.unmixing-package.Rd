@@ -1,6 +1,6 @@
-\name{hyperSpec.unmixing-package}
-\alias{hyperSpec.unmixing-package}
-\alias{hyperSpec.unmixing}
+\name{spec.unmixing-package}
+\alias{spec.unmixing-package}
+\alias{spec.unmixing}
 \docType{package}
 \title{
 What the package does (short line)
