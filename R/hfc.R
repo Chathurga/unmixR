@@ -1,3 +1,11 @@
+##' Harsanyi-Farrand-Chang method for estimating the number of endmembers
+##' 
+##' (-description-)
+##' 
+##' @param data Spectra matrix to examine
+##' @param False-alarm probability
+##' @return (-return-)
+
 hfc <- function(data, alpha) {
   transpose <- t(data)
   
