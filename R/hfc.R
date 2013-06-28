@@ -1,4 +1,5 @@
-##' Harsanyi-Farrand-Chang method for estimating the number of endmembers
+##' Harsanyi-Farrand-Chang method for estimating the number of endmembers in
+##' a spectral image
 ##' 
 ##' (-description-)
 ##' 

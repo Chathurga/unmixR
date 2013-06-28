@@ -1,9 +1,12 @@
-##' N-FINDR (Michael E. Winter, 1999) unmixing algorithm
+##' N-FINDR unmixing algorithm
 ##' 
-##' (-description-)
+##' This technique is based on the fact that in N spectral dimensions, the
+##' N-volume contained by a simplex formed of the purest pixels is larger
+##' than any other volume formed from any other combination of pixels.
 ##' 
 ##' @param data Spectra matrix to unmix
-##' @param p Number of endmembers (will be estimated using \code{\link{hfc}} if omitted)
+##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
+##'   if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)
 ##' @return (-return-)
 

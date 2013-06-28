@@ -1,6 +1,6 @@
 \name{nfindr}
 \alias{nfindr}
-\title{N-FINDR (Michael E. Winter, 1999) unmixing algorithm}
+\title{N-FINDR unmixing algorithm}
 \usage{
   nfindr(data, p = hfc(data, 10^(-5)), iters = 3 * p)
 }
@@ -17,6 +17,9 @@
   (-return-)
 }
 \description{
-  (-description-)
+  The technique is based on the fact that in N spectral
+  dimensions, the N-volume contained by a simplex formed of
+  the purest pixels is larger than any other volume formed
+  from any other combination of pixels.
 }
 

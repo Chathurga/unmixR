@@ -1,6 +1,7 @@
 \name{hfc}
 \alias{hfc}
-\title{Harsanyi-Farrand-Chang method for estimating the number of endmembers}
+\title{Harsanyi-Farrand-Chang method for estimating the number of endmembers in
+a spectral image}
 \usage{
   hfc(data, alpha)
 }
