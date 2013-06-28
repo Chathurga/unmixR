@@ -1,7 +1,8 @@
 ##' Harsanyi-Farrand-Chang method for estimating the number of endmembers in
 ##' a spectral image
 ##' 
-##' (-description-)
+##' Calculates the difference between the eigenvalues in the correlation and
+##' covariance matrices of the spectra...
 ##' 
 ##' @param data Spectra matrix to examine
 ##' @param alpha False-alarm probability
