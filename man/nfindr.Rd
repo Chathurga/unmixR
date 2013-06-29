@@ -17,7 +17,7 @@
   (-return-)
 }
 \description{
-  The technique is based on the fact that in N spectral
+  This technique is based on the fact that in N spectral
   dimensions, the N-volume contained by a simplex formed of
   the purest pixels is larger than any other volume formed
   from any other combination of pixels.

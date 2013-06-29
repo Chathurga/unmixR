@@ -1,42 +1,16 @@
+\docType{package}
 \name{spec.unmixing-package}
 \alias{spec.unmixing-package}
-\alias{spec.unmixing}
-\docType{package}
-\title{
-What the package does (short line)
-~~ package title ~~
-}
+\title{Spectral Unmixing Methods}
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
-}
-\details{
-\tabular{ll}{
-Package: \tab hyperSpec.unmixing\cr
-Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2013-06-19\cr
-License: \tab What license is it under?\cr
-}
-~~ An overview of how to use the package, including the most important ~~
-~~ functions ~~
+  Implements the N-FINDR and Vertex Component Analysis
+  algorithms to recover pure component spectra and their
+  respective concentrations from a set of measured spectra.
 }
 \author{
-Who wrote it
+  Conor McManus
 
-Maintainer: Who to complain to <yourfault@somewhere.net>
-~~ The author and/or maintainer of the package ~~
+  Maintainer: Conor McManus <chathurga@gmail.com>
 }
-\references{
-~~ Literature or other references for background information ~~
-}
-~~ Optionally other standard keywords, one per line, from file KEYWORDS in ~~
-~~ the R documentation directory ~~
-\keyword{ package }
-\seealso{
-~~ Optional links to other man pages, e.g. ~~
-~~ \code{\link[<pkg>:<pkg>-package]{<pkg>}} ~~
-}
-\examples{
-~~ simple examples of the most important functions ~~
-}
+\keyword{package}
+

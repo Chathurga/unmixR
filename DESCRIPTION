@@ -1,10 +1,10 @@
 Package: spec.unmixing
 Type: Package
-Title: Provide unmixing algorithms for spectral images
+Title: Spectral Unmixing Methods
 Version: 1.0
 Date: 2013-06-19
 Author: Conor McManus
-Maintainer: blank <blank@blank.blank>
+Maintainer: Conor McManus <chathurga@gmail.com>
 Description: Implements the N-FINDR and Vertex Component Analysis algorithms
     to recover pure component spectra and their respective concentrations
     from a set of measured spectra.

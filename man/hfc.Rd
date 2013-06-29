@@ -14,6 +14,7 @@ a spectral image}
   (-return-)
 }
 \description{
-  (-description-)
+  Calculates the difference between the eigenvalues in the
+  correlation and covariance matrices of the spectra...
 }
 
