@@ -8,10 +8,12 @@ a spectral image}
 \arguments{
   \item{data}{Spectra matrix to examine}
 
-  \item{alpha}{False-alarm probability}
+  \item{alpha}{False-alarm probability (can be a vector of
+  alpha values)}
 }
 \value{
-  The estimated number of endmembers
+  The estimated number of endmembers (in the form vector if
+  alpha is a vector)
 }
 \description{
   Calculates the difference between the eigenvalues in the
