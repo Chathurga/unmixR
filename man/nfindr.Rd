@@ -5,7 +5,8 @@
   nfindr(data, p = hfc(data, 10^(-5)), iters = 3 * p)
 }
 \arguments{
-  \item{data}{Spectra matrix to unmix}
+  \item{data}{Spectra matrix to unmix. Each column of the
+  matrix should represent a spectrum}
 
   \item{p}{Number of endmembers (will be estimated using
   \code{\link{hfc}} if omitted)}

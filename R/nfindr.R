@@ -4,7 +4,8 @@
 ##' N-volume contained by a simplex formed of the purest pixels is larger
 ##' than any other volume formed from any other combination of pixels.
 ##' 
-##' @param data Spectra matrix to unmix
+##' @param data Spectra matrix to unmix. Each column of the matrix should
+##'   represent a spectrum
 ##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
 ##'   if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)
