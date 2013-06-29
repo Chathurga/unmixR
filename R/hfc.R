@@ -7,7 +7,7 @@
 ##' 
 ##' @param data Spectra matrix to examine
 ##' @param alpha False-alarm probability
-##' @return (-return-)
+##' @return The estimated number of endmembers
 
 hfc <- function(data, alpha) {
   transpose <- t(data)

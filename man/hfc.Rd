@@ -11,7 +11,7 @@ a spectral image}
   \item{alpha}{False-alarm probability}
 }
 \value{
-  (-return-)
+  The estimated number of endmembers
 }
 \description{
   Calculates the difference between the eigenvalues in the

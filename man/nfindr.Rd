@@ -15,7 +15,8 @@
   p)}
 }
 \value{
-  (-return-)
+  Returns a (no. of spectra x p) matrix where each column
+  is a pure component
 }
 \description{
   This technique is based on the fact that in N spectral

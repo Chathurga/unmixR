@@ -9,7 +9,8 @@
 ##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
 ##'   if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)
-##' @return (-return-)
+##' @return Returns a (no. of spectra x p) matrix where each column is a
+##'   pure component
 
 nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   dims <- dim(data)
