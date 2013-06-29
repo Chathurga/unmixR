@@ -69,3 +69,12 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   
   E
 }
+
+if (require("hyperSpec", quietly=TRUE)) {
+  setMethod("nfindr", signature(data="hyperSpec"),
+    function(data, p=hfc(m, 10^(-5)), iters=3*p) {
+      m <- t(data@data$spc)
+      nfindr(m, p, iters)
+    }
+  )
+}
