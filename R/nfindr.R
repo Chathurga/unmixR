@@ -24,15 +24,15 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   IDX <- array(0, p)
   
   testMatrix <- matrix(0, nrow=p, ncol=p)
-  testMatrix[1,] = 1
+  testMatrix[1,] <- 1
   
   for (i in 1:p) {
     rand <- runif(1, min=0, max=1)
     idx <- floor(rand * nsamples) + 1
     
-    testMatrix[2:p,i] = pca[idx]
+    testMatrix[2:p,i] <- pca[idx]
     
-    IDX[i] = idx
+    IDX[i] <- idx
   }
   
   actualVolume <- abs(det(testMatrix))
@@ -45,14 +45,14 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
       for (i in 1:nsamples) {
         actualSample <- testMatrix[2:p,k]
         
-        testMatrix[2:p,k] = pca[i]
+        testMatrix[2:p,k] <- pca[i]
         volume <- abs(det(testMatrix))
         
         if (volume > actualVolume) {
           actualVolume <- volume
           IDX[k] <- i
         } else {
-          testMatrix[2:p,k] = actualSample
+          testMatrix[2:p,k] <- actualSample
         }
       }
     }
@@ -63,8 +63,8 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   }
   
   for (i in 1:p) {
-    E[,i] = data[,IDX[i]]
-    C[IDX[i]] = 1
+    E[,i] <- data[,IDX[i]]
+    C[IDX[i]] <- 1
   }
   
   E
