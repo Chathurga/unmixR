@@ -2,7 +2,8 @@
 ##' a spectral image
 ##' 
 ##' Calculates the difference between the eigenvalues in the correlation and
-##' covariance matrices of the spectra...
+##' covariance matrices of the spectra to determine the virtual
+##' dimensionality (VD)
 ##' 
 ##' @param data Spectra matrix to examine
 ##' @param alpha False-alarm probability

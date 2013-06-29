@@ -15,6 +15,7 @@ a spectral image}
 }
 \description{
   Calculates the difference between the eigenvalues in the
-  correlation and covariance matrices of the spectra...
+  correlation and covariance matrices of the spectra to
+  determine the virtual dimensionality (VD)
 }
 
