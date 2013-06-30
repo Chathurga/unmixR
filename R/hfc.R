@@ -26,13 +26,8 @@ hfc <- function(data, alpha) {
   variance <- sqrt(2*(lcorr^2 + lcov^2) / nsamples)
   difference <- lcorr - lcov
   
-  p <- length(alpha)
-  vd <- array(0, p)
-  
-  for (i in 1:p) {
-      tau <- -qnorm(alpha[i], array(0, nvariables), variance)
-      vd[i] <- sum(difference > tau)
-  }
-  
-  vd
+  as.numeric(Map(function(a) {
+    tau <- -qnorm(a, array(0, nvariables), variance)
+    sum(difference > tau)
+  }, alpha))
 }
