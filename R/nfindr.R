@@ -19,8 +19,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   
   pca <- prcomp(data)$x[1:(p-1),]
   
-  E <- matrix(0, nrow=nvariables, ncol=p)
-  C <- matrix(0, nrow=1, ncol=nsamples)
+  C <- array(0, p)
   IDX <- array(0, p)
   
   testMatrix <- matrix(0, nrow=p, ncol=p)
@@ -36,8 +35,8 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   }
   
   actualVolume <- abs(det(testMatrix))
-  it <- 1;
-  v1 <- -1;
+  it <- 1
+  v1 <- -1
   v2 <- actualVolume
   
   while (it <= iters && v2 > v1) {
@@ -62,10 +61,8 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
     v2 <- actualVolume
   }
   
-  for (i in 1:p) {
-    E[,i] <- data[,IDX[i]]
-    C[IDX[i]] <- 1
-  }
+  E <- data[,IDX]
+  C[IDX] <- 1
   
   E
 }
