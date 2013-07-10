@@ -17,13 +17,18 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   data <- as.matrix(data)
   nspectra <- dim(data)[1]
   
-  pca <- prcomp(data)$x[,1:(p-1)]
+  # reduce the dimensionality of the data using PCA
+  # do nothing if the data was passed in already reduced
+  reduced <- data
+  if (nspectra != p - 1) {
+    reduced <- prcomp(data)$x[,1:(p-1)]
+  }
   
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
   
   indexes <- sample(ncol(data), p)
-  testMatrix[2:p,] <- pca[indexes]
+  testMatrix[2:p,] <- reduced[indexes]
   
   volume <- abs(det(testMatrix))
   it <- 1
@@ -35,7 +40,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
       for (i in 1:nspectra) {
         sample <- testMatrix[2:p,k]
         
-        testMatrix[2:p,k] <- pca[i]
+        testMatrix[2:p,k] <- reduced[i]
         testVolume <- abs(det(testMatrix))
         
         if (testVolume > volume) {
