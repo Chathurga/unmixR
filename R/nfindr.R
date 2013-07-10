@@ -13,6 +13,7 @@
 ##'   pure component
 
 nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
+  data <- t(as.matrix(data))
   nspectra <- dim(data)[2]
   
   pca <- prcomp(data)$x[1:(p-1),]
@@ -55,13 +56,4 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   C[indexes] <- 1
   
   E
-}
-
-if (require("hyperSpec", quietly=TRUE)) {
-  setMethod("nfindr", signature(data="hyperSpec"),
-    function(data, p=hfc(m, 10^(-5)), iters=3*p) {
-      m <- t(data@data$spc)
-      nfindr(m, p, iters)
-    }
-  )
 }
