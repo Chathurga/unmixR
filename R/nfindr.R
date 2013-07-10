@@ -4,12 +4,13 @@
 ##' N-volume contained by a simplex formed of the purest pixels is larger
 ##' than any other volume formed from any other combination of pixels.
 ##' 
-##' @param data Spectra matrix to unmix. Each column of the matrix should
-##'   represent a spectrum
+##' @param data Data to unmix. Will be converted to a matrix using as.matrix.
+##'   If the data has not been reduced yet then it will be reduced using
+##'   \code{\link[stats]{prcomp}}
 ##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
 ##'   if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)
-##' @return Returns a (no. of spectra x p) matrix where each column is a
+##' @return Returns a (p x no. of spectra) matrix where each row is a
 ##'   pure component
 
 nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {

@@ -5,8 +5,10 @@
   nfindr(data, p = hfc(data, 10^(-5)), iters = 3 * p)
 }
 \arguments{
-  \item{data}{Spectra matrix to unmix. Each column of the
-  matrix should represent a spectrum}
+  \item{data}{Data to unmix. Will be converted to a matrix
+  using as.matrix.  If the data has not been reduced yet
+  then it will be reduced using
+  \code{\link[stats]{prcomp}}}
 
   \item{p}{Number of endmembers (will be estimated using
   \code{\link{hfc}} if omitted)}
@@ -15,8 +17,8 @@
   p)}
 }
 \value{
-  Returns a (no. of spectra x p) matrix where each column
-  is a pure component
+  Returns a (p x no. of spectra) matrix where each row is a
+  pure component
 }
 \description{
   This technique is based on the fact that in N spectral
