@@ -6,9 +6,7 @@
 }
 \arguments{
   \item{data}{Data to unmix. Will be converted to a matrix
-  using as.matrix.  If the data has not been reduced yet
-  then it will be reduced using
-  \code{\link[stats]{prcomp}}}
+  using as.matrix.}
 
   \item{p}{Number of endmembers (will be estimated using
   \code{\link{hfc}} if omitted)}

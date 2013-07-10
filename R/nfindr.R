@@ -5,8 +5,6 @@
 ##' than any other volume formed from any other combination of pixels.
 ##' 
 ##' @param data Data to unmix. Will be converted to a matrix using as.matrix.
-##'   If the data has not been reduced yet then it will be reduced using
-##'   \code{\link[stats]{prcomp}}
 ##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
 ##'   if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)
@@ -17,12 +15,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   data <- as.matrix(data)
   nspectra <- dim(data)[1]
   
-  # reduce the dimensionality of the data using PCA
-  # do nothing if the data was passed in already reduced
-  reduced <- data
-  if (nspectra != p - 1) {
-    reduced <- prcomp(data)$x[,1:(p-1)]
-  }
+  reduced <- prcomp(data)$x[,1:(p-1)]
   
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
