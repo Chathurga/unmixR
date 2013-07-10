@@ -13,49 +13,46 @@
 ##'   pure component
 
 nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
-  dims <- dim(data)
-  nvariables <- dims[1]
-  nsamples <- dims[2]
+  nspectra <- dim(data)[2]
   
   pca <- prcomp(data)$x[1:(p-1),]
-  
-  C <- array(0, p)
   
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
   
-  IDX <- sample(nrow(data), 2)
-  testMatrix[2:p,] <- pca[IDX]
+  indexes <- sample(nrow(data), 2)
+  testMatrix[2:p,] <- pca[indexes]
   
-  actualVolume <- abs(det(testMatrix))
+  volume <- abs(det(testMatrix))
   it <- 1
   v1 <- -1
-  v2 <- actualVolume
+  v2 <- volume
   
   while (it <= iters && v2 > v1) {
     for (k in 1:p) {
-      for (i in 1:nsamples) {
-        actualSample <- testMatrix[2:p,k]
+      for (i in 1:nspectra) {
+        sample <- testMatrix[2:p,k]
         
         testMatrix[2:p,k] <- pca[i]
-        volume <- abs(det(testMatrix))
+        testVolume <- abs(det(testMatrix))
         
-        if (volume > actualVolume) {
-          actualVolume <- volume
-          IDX[k] <- i
+        if (testVolume > volume) {
+          volume <- testVolume
+          indexes[k] <- i
         } else {
-          testMatrix[2:p,k] <- actualSample
+          testMatrix[2:p,k] <- sample
         }
       }
     }
     
     it <- it+1
     v1 <- v2
-    v2 <- actualVolume
+    v2 <- volume
   }
   
-  E <- data[,IDX]
-  C[IDX] <- 1
+  E <- data[,indexes]
+  C <- array(0, p)
+  C[indexes] <- 1
   
   E
 }
