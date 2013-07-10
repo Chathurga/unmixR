@@ -13,15 +13,15 @@
 ##'   pure component
 
 nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
-  data <- t(as.matrix(data))
-  nspectra <- dim(data)[2]
+  data <- as.matrix(data)
+  nspectra <- dim(data)[1]
   
-  pca <- prcomp(data)$x[1:(p-1),]
+  pca <- prcomp(data)$x[,1:(p-1)]
   
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
   
-  indexes <- sample(nrow(data), p)
+  indexes <- sample(ncol(data), p)
   testMatrix[2:p,] <- pca[indexes]
   
   volume <- abs(det(testMatrix))
@@ -51,7 +51,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
     v2 <- volume
   }
   
-  E <- data[,indexes]
+  E <- data[indexes,]
   C <- array(0, p)
   C[indexes] <- 1
   
