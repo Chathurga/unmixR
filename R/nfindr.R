@@ -20,19 +20,12 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   pca <- prcomp(data)$x[1:(p-1),]
   
   C <- array(0, p)
-  IDX <- array(0, p)
   
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
   
-  for (i in 1:p) {
-    rand <- runif(1, min=0, max=1)
-    idx <- floor(rand * nsamples) + 1
-    
-    testMatrix[2:p,i] <- pca[idx]
-    
-    IDX[i] <- idx
-  }
+  IDX <- sample(nrow(data), 2)
+  testMatrix[2:p,] <- pca[IDX]
   
   actualVolume <- abs(det(testMatrix))
   it <- 1
