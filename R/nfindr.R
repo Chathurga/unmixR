@@ -21,7 +21,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
   
-  indexes <- sample(nrow(data), 2)
+  indexes <- sample(nrow(data), p)
   testMatrix[2:p,] <- pca[indexes]
   
   volume <- abs(det(testMatrix))
