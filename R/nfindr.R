@@ -10,6 +10,10 @@
 ##' @param iters Max number of iterations (defaults to 3 * p)
 ##' @return Returns a (p x no. of spectra) matrix where each row is a
 ##'   pure component
+##' @references Michael E. Winter; "N-FINDR: an algorithm for fast autonomous
+##'   spectral end-member determination in hyperspectral data", Proc.
+##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);
+##'   doi:10.1117/12.366289;
 
 nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   data <- as.matrix(data)

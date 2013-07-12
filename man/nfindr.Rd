@@ -24,4 +24,11 @@
   the purest pixels is larger than any other volume formed
   from any other combination of pixels.
 }
+\references{
+  Michael E. Winter; "N-FINDR: an algorithm for fast
+  autonomous spectral end-member determination in
+  hyperspectral data", Proc.  SPIE 3753, Imaging
+  Spectrometry V, 266 (October 27, 1999);
+  doi:10.1117/12.366289;
+}
 
