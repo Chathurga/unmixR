@@ -19,12 +19,12 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   data <- as.matrix(data)
   nspectra <- dim(data)[1]
   
-  reduced <- prcomp(data)$x[,1:(p-1)]
+  reduced <- prcomp(data)$x[,1:(p-1),drop=F]
   
   indexes <- sample(nrow(data), p)
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
-  testMatrix[2:p,] <- reduced[indexes]
+  testMatrix[2:p,] <- reduced[indexes,]
   
   volume <- abs(det(testMatrix))
   it <- 1
