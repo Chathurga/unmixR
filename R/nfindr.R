@@ -19,8 +19,11 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   data <- as.matrix(data)
   nspectra <- dim(data)[1]
   
+  # reduce the dimensionality of the input (to p-1) using PCA
   reduced <- prcomp(data)$x[,1:(p-1),drop=F]
   
+  # select random indexes that form the initial simplex
+  # this simplex will be inflated until the pure pixels are found
   indexes <- sample(nrow(data), p)
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
@@ -36,7 +39,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
       for (i in 1:nspectra) {
         sample <- testMatrix[2:p,k]
         
-        testMatrix[2:p,k] <- reduced[i]
+        testMatrix[2:p,k] <- reduced[i,]
         testVolume <- abs(det(testMatrix))
         
         if (testVolume > volume) {
