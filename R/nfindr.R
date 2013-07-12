@@ -29,23 +29,31 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   testMatrix[1,] <- 1
   testMatrix[2:p,] <- reduced[indexes,]
   
+  # calculate the initial volume using the random endmembers
   volume <- abs(det(testMatrix))
   it <- 1
   v1 <- -1
   v2 <- volume
   
-  while (it <= iters && v2 > v1) {
+  # keep replacing endmembers until there is never an increase in volume
+  # or the max iterations are reached (indicates pure endmembers not found)
+  while (v2 > v1 && it <= iters) {
     for (k in 1:p) {
       for (i in 1:nspectra) {
+        # replace the k-th endmember with the i-th reduced spectrum
+        # and recalculate the volume
         sample <- testMatrix[2:p,k]
-        
         testMatrix[2:p,k] <- reduced[i,]
         testVolume <- abs(det(testMatrix))
         
+        # if the replacement increased the volume then keep the replacement
+        # and the note the spectrum's index
         if (testVolume > volume) {
           volume <- testVolume
           indexes[k] <- i
-        } else {
+        }
+        # otherwise revert the replacement
+        else {
           testMatrix[2:p,k] <- sample
         }
       }
@@ -56,6 +64,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
     v2 <- volume
   }
   
+  # return the spectra that increased the simplex volume the most
   E <- data[indexes,]
   C <- array(0, p)
   C[indexes] <- 1
