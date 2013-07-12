@@ -21,10 +21,9 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   
   reduced <- prcomp(data)$x[,1:(p-1)]
   
+  indexes <- sample(nrow(data), p)
   testMatrix <- matrix(0, nrow=p, ncol=p)
   testMatrix[1,] <- 1
-  
-  indexes <- sample(ncol(data), p)
   testMatrix[2:p,] <- reduced[indexes]
   
   volume <- abs(det(testMatrix))
