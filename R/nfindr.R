@@ -72,10 +72,7 @@ nfindr <- function(data, p, iters=3*p) {
     v2 <- volume
   }
   
-  # return the spectra that increased the simplex volume the most
-  E <- data[indexes,]
-  C <- array(0, p)
-  C[indexes] <- 1
-  
-  E
+  # return the indexes of the spectra which increased the simplex volume
+  # the most. These are the indexes of the endmembers
+  indexes
 }
