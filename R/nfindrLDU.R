@@ -13,23 +13,44 @@ nfindrLDU <- function(data, p) {
   
   g <- matrix(0, nrow=p, ncol=p-1)
   V <- pm1
-
+  
   for (i in 1:p) {
     # swap the i-th and p-th columns of the simplex
     dup <- simplex
     swaps <- 1:p
-    swaps[p] = i
-    swaps[i] = p
-    dup <- dup[,swaps]
+    simplex[p] = i
+    simplex[i] = p
+    simplex <- simplex[,swaps]
     
     # get the partitioned components of the simplex matrix
-    A <- dup[pm1,pm1]
-    b <- dup[pm1,p]
-    c <- dup[p,pm1]
-    d <- dup[p,p]
+    A <- simplex[pm1,pm1]
+    b <- simplex[pm1,p]
+    c <- simplex[p,pm1]
+    d <- simplex[p,p]
     
     g[i,] <- t(c) %*% solve(A)
     V[i] <- abs(d - (t(g[i,]) %*% b))
+  }
+  
+  replace <- T
+  while (replace == T) {
+    replace <- F
+    
+    for (j in 1:nspectra) {
+      y <- reduced[j,]
+      bj <- c(1, y[1:p-2])
+      dj <- y[p-1]
+      
+      for (i in 1:p) {
+        Vtest <- abs(dj - (t(g[i,]) %*% bj))
+        
+        if (Vtest > V[i]) {
+          replace <- T
+          V[i] <- Vtest
+          simplex[i,] = y
+        }
+      }
+    }
   }
   
   g
