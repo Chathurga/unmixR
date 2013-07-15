@@ -16,16 +16,20 @@
 ##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);
 ##'   doi:10.1117/12.366289;
 
-nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
+nfindr <- function(data, p, iters=3*p) {
   data <- as.matrix(data)
   nspectra <- dim(data)[1]
   
-  # reduce the dimensionality of the input (to p-1) using PCA
-  reduced <- prcomp(data)$x[,1:(p-1),drop=F]
+  # reduce the dimensionality of the data using PCA
+  # do nothing if the data was passed in already reduced
+  reduced <- data
+  if (nspectra != p - 1) {
+    reduced <- prcomp(data)$x[,1:(p-1),drop=F]
+  }
   
   # select random indexes that form the initial simplex
   # this simplex will be inflated until the pure pixels are found
-  indexes <- sample(nrow(data), p)
+  indexes <- sample(nrow(reduced), p)
   simplex <- matrix(0, nrow=p, ncol=p)
   simplex[1,] <- 1
   simplex[2:p,] <- reduced[indexes,]
