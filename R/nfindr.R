@@ -25,12 +25,12 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   # select random indexes that form the initial simplex
   # this simplex will be inflated until the pure pixels are found
   indexes <- sample(nrow(data), p)
-  testMatrix <- matrix(0, nrow=p, ncol=p)
-  testMatrix[1,] <- 1
-  testMatrix[2:p,] <- reduced[indexes,]
+  simplex <- matrix(0, nrow=p, ncol=p)
+  simplex[1,] <- 1
+  simplex[2:p,] <- reduced[indexes,]
   
   # calculate the initial volume using the random endmembers
-  volume <- abs(det(testMatrix))
+  volume <- abs(det(simplex))
   it <- 1
   v1 <- -1
   v2 <- volume
@@ -42,9 +42,9 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
       for (i in 1:nspectra) {
         # replace the k-th endmember with the i-th reduced spectrum
         # and recalculate the volume
-        sample <- testMatrix[2:p,k]
-        testMatrix[2:p,k] <- reduced[i,]
-        testVolume <- abs(det(testMatrix))
+        sample <- simplex[2:p,k]
+        simplex[2:p,k] <- reduced[i,]
+        testVolume <- abs(det(simplex))
         
         # if the replacement increased the volume then keep the replacement
         # and the note the spectrum's index
@@ -54,7 +54,7 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
         }
         # otherwise revert the replacement
         else {
-          testMatrix[2:p,k] <- sample
+          simplex[2:p,k] <- sample
         }
       }
     }
