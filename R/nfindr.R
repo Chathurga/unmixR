@@ -40,9 +40,12 @@ nfindr <- function(data, p=hfc(data, 10^(-5)), iters=3*p) {
   while (v2 > v1 && it <= iters) {
     for (k in 1:p) {
       for (i in 1:nspectra) {
+        # store current sample as it may need to be placed back into the
+        # simplex after the following replacement
+        sample <- simplex[2:p,k]
+        
         # replace the k-th endmember with the i-th reduced spectrum
         # and recalculate the volume
-        sample <- simplex[2:p,k]
         simplex[2:p,k] <- reduced[i,]
         testVolume <- abs(det(simplex))
         
