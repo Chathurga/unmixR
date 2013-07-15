@@ -5,6 +5,7 @@
 ##' than any other volume formed from any other combination of pixels.
 ##' 
 ##' @param data Data to unmix. Will be converted to a matrix using as.matrix.
+##'   The matrix should contain a spectrum per row.
 ##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
 ##'   if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)

@@ -6,7 +6,8 @@
 }
 \arguments{
   \item{data}{Data to unmix. Will be converted to a matrix
-  using as.matrix.}
+  using as.matrix.  The matrix should contain a spectrum
+  per row.}
 
   \item{p}{Number of endmembers (will be estimated using
   \code{\link{hfc}} if omitted)}
