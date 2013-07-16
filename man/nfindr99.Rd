@@ -18,9 +18,9 @@
 \value{
   A structure which contains: \itemize{ \item
   \strong{data}: the original data (or NULL if the input
-  data was already reduced) \item \strong{indexes}: the
-  indexes of the spectra which increased the simplex volume
-  the most. These are the indexes of the endmembers }
+  data was already reduced) \item \strong{indices}: the
+  indices of the spectra which increased the simplex volume
+  the most. These are the indices of the endmembers }
 }
 \description{
   This technique is based on the fact that in N spectral
