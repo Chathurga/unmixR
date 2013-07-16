@@ -9,3 +9,4 @@ Description: Implements the N-FINDR and Vertex Component Analysis algorithms
     to recover pure component spectra and their respective concentrations
     from a set of measured spectra.
 License: GPL (>= 3)
+Depends: nnls
