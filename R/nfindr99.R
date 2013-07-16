@@ -79,7 +79,7 @@ nfindr99 <- function(data, p, iters=3*p) {
   }
   
   structure(list(
-    data = if (identical(data, reduced)) data else NULL,
+    data = if (!identical(data, reduced)) data else NULL,
     indices = indices
   ), class = "nfindr")
 }
