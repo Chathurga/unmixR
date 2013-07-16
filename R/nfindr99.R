@@ -1,4 +1,4 @@
-##' N-FINDR unmixing algorithm
+##' Michael E. Winter's 1999 N-FINDR unmixing algorithm
 ##' 
 ##' This technique is based on the fact that in N spectral dimensions, the
 ##' N-volume contained by a simplex formed of the purest pixels is larger
@@ -22,7 +22,7 @@
 ##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);
 ##'   doi:10.1117/12.366289;
 
-nfindr <- function(data, p, iters=3*p) {
+nfindr99 <- function(data, p, iters=3*p) {
   data <- as.matrix(data)
   nspectra <- dim(data)[1]
   
