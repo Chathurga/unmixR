@@ -9,8 +9,14 @@
 ##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
 ##'   if omitted)
 ##' @param iters Max number of iterations (defaults to 3 * p)
-##' @return Returns a (p x no. of spectra) matrix where each row is a
-##'   pure component
+##' @return A structure which contains:
+##'   \itemize{
+##'     \item \strong{data}: the original data (or NULL if the input data was
+##'                          already reduced)
+##'     \item \strong{indexes}: the indexes of the spectra which increased
+##'                             the simplex volume the most. These are the
+##'                             indexes of the endmembers
+##'   }
 ##' @references Michael E. Winter; "N-FINDR: an algorithm for fast autonomous
 ##'   spectral end-member determination in hyperspectral data", Proc.
 ##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);
@@ -72,7 +78,8 @@ nfindr <- function(data, p, iters=3*p) {
     v2 <- volume
   }
   
-  # return the indexes of the spectra which increased the simplex volume
-  # the most. These are the indexes of the endmembers
-  indexes
+  structure(list(
+    data = if (identical(data, reduced)) data else NULL,
+    indexes = indexes
+  ), class = "nfindr")
 }

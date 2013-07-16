@@ -2,7 +2,7 @@
 \alias{nfindr}
 \title{N-FINDR unmixing algorithm}
 \usage{
-  nfindr(data, p = hfc(data, 10^(-5)), iters = 3 * p)
+  nfindr(data, p, iters = 3 * p)
 }
 \arguments{
   \item{data}{Data to unmix. Will be converted to a matrix
@@ -16,8 +16,11 @@
   p)}
 }
 \value{
-  Returns a (p x no. of spectra) matrix where each row is a
-  pure component
+  A structure which contains: \itemize{ \item
+  \strong{data}: the original data (or NULL if the input
+  data was already reduced) \item \strong{indexes}: the
+  indexes of the spectra which increased the simplex volume
+  the most. These are the indexes of the endmembers }
 }
 \description{
   This technique is based on the fact that in N spectral
