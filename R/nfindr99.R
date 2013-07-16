@@ -13,9 +13,9 @@
 ##'   \itemize{
 ##'     \item \strong{data}: the original data (or NULL if the input data was
 ##'                          already reduced)
-##'     \item \strong{indexes}: the indexes of the spectra which increased
+##'     \item \strong{indices}: the indices of the spectra which increased
 ##'                             the simplex volume the most. These are the
-##'                             indexes of the endmembers
+##'                             indices of the endmembers
 ##'   }
 ##' @references Michael E. Winter; "N-FINDR: an algorithm for fast autonomous
 ##'   spectral end-member determination in hyperspectral data", Proc.
@@ -33,12 +33,12 @@ nfindr99 <- function(data, p, iters=3*p) {
     reduced <- prcomp(data)$x[,1:(p-1),drop=F]
   }
   
-  # select random indexes that form the initial simplex
+  # select random indices that form the initial simplex
   # this simplex will be inflated until the pure pixels are found
-  indexes <- sample(nrow(reduced), p)
+  indices <- sample(nrow(reduced), p)
   simplex <- matrix(0, nrow=p, ncol=p)
   simplex[1,] <- 1
-  simplex[2:p,] <- reduced[indexes,]
+  simplex[2:p,] <- reduced[indices,]
   
   # calculate the initial volume using the random endmembers
   volume <- abs(det(simplex))
@@ -64,7 +64,7 @@ nfindr99 <- function(data, p, iters=3*p) {
         # and the note the spectrum's index
         if (testVolume > volume) {
           volume <- testVolume
-          indexes[k] <- i
+          indices[k] <- i
         }
         # otherwise revert the replacement
         else {
@@ -80,6 +80,6 @@ nfindr99 <- function(data, p, iters=3*p) {
   
   structure(list(
     data = if (identical(data, reduced)) data else NULL,
-    indexes = indexes
+    indices = indices
   ), class = "nfindr")
 }
