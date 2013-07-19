@@ -1,0 +1,25 @@
+\documentclass{article}
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+%\VignetteDepends{hyperSpec}
+<<>>=
+#opts_knit$set (self.contained=FALSE)
+#opts_chunk$set (fig.width=10, fig.height=4)
+#TODO: figure out how to use knitr for vignettes
+
+require ("hyperSpec")
+require ("spec.unmixing")
+@
+
+<<>>=
+matplot (laser$t / 60, laser [[,, c(405.15, 405.29)]], type = "l", lty = 1, main = "univariate", xlab = "t / min")
+@
+
+Winter 1999:
+<<>>=
+e <- nfindr99 (laser [[]], p=2)
+plot (decomposition (laser, e$data [e$indices,]), col = 1 : 2)
+
+matplot (laser$t / 60, predict (e), type = "l", lty = 1, main = "N-FINDR Winter1999", xlab = "t / min")
+@
+\end{document}
