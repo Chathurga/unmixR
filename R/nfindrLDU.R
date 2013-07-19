@@ -4,54 +4,68 @@ nfindrLDU <- function(data, p) {
   
   reduced <- prcomp(data)$x[,1:(p-1),drop=F]
 
-  indices <- sample(nrow(reduced), p)
+  indices <- sample(nspectra, p)
   simplex <- matrix(0, nrow=p, ncol=p)
   simplex[1,] <- 1
   simplex[2:p,] <- reduced[indices,]
 
   pm1 <- 1:p-1 # create a range from 1 to p minus 1
   
-  g <- matrix(0, nrow=p, ncol=p-1)
-  V <- pm1
+  update <- function(simplex, p) {
+    g <- matrix(0, nrow=p, ncol=p-1)
+    V <- pm1
   
-  for (i in 1:p) {
-    # swap the i-th and p-th columns of the simplex
-    dup <- simplex
-    swaps <- 1:p
-    simplex[p] = i
-    simplex[i] = p
-    simplex <- simplex[,swaps]
+    for (i in 1:p) {
+      dup <- simplex
+      # swap the i-th and p-th columns of the simplex
+      swaps <- 1:p
+      swaps[p] = i
+      swaps[i] = p
+      dup <- dup[,swaps]
+      
+      # get the partitioned components of the simplex matrix
+      A <- dup[pm1,pm1]
+      b <- dup[pm1,p]
+      c <- dup[p,pm1]
+      d <- dup[p,p]
+      
+      g[i,] <- crossprod(c, solve(A))
+      V[i] <- as.numeric(abs(d - crossprod(g[i,], b)))
+    }
     
-    # get the partitioned components of the simplex matrix
-    A <- simplex[pm1,pm1]
-    b <- simplex[pm1,p]
-    c <- simplex[p,pm1]
-    d <- simplex[p,p]
-    
-    g[i,] <- t(c) %*% solve(A)
-    V[i] <- abs(d - (t(g[i,]) %*% b))
+    list(simplex=simplex, V=V, g=g)
   }
   
-  replace <- T
-  while (replace == T) {
-    replace <- F
+  vars <- update(simplex, p)
+  simplex <- vars$simplex
+  g <- vars$g
+  V <- vars$V
+  
+  replace <- TRUE
+  while (replace == TRUE) {
+    replace <- FALSE
     
     for (j in 1:nspectra) {
-      y <- reduced[j,]
-      bj <- c(1, y[1:p-2])
-      dj <- y[p-1]
+      y <- c(1, reduced[j,])
+      bj <- y[1:(p-1)]
+      dj <- y[p]
       
       for (i in 1:p) {
-        Vtest <- abs(dj - (t(g[i,]) %*% bj))
+        Vtest <- as.numeric(abs(dj - crossprod(g[i,], bj)))
         
-        if (Vtest > V[i]) {
-          replace <- T
-          V[i] <- Vtest
-          simplex[i,] = y
+        if (Vtest > V[i] && !(j %in% indices)) {
+          replace <- TRUE
+          simplex[,i] <- y
+          indices[i] <- j
+          
+          vars <- update(simplex, p)
+          simplex <- vars$simplex
+          g <- vars$g
+          V <- vars$V
         }
       }
     }
   }
   
-  g
+  indices
 }
