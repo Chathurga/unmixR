@@ -7,9 +7,9 @@
 
 predict.nfindr <- function(object, ...) {  #CB: obey signature of generic, see ?predict
   data <- object$data
-  endmembers <- t(object$data [object$indices,])
+  endmembers <- t (data [object$indices,])
   
-  apply(data, 1, function(spectrum) {
-    nnls(endmembers, spectrum)$x
-  })
+  t (apply (data, 1, function (spectrum) {
+    nnls (endmembers, spectrum)$x
+  }))
 }
