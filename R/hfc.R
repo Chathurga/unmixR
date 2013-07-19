@@ -11,13 +11,13 @@
 ##'   is a vector)
 
 hfc <- function(data, alpha) {
-  transpose <- t(data)
+  transpose <- t(data) #CB: I suspect that this should not be transposed
   
   dims <- dim(data)
   nvariables <- dims[1]
   nsamples <- dims[2]
   
-  R <- (data %*% transpose) / nsamples
+  R <- (data %*% transpose) / nsamples #CB: have a look at ?crossprod and ?cor
   K <- cov(transpose)
   
   lcorr <- eigen(R)$values
