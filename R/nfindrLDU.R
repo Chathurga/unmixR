@@ -9,7 +9,7 @@ nfindrLDU <- function(data, p) {
   simplex[1,] <- 1
   simplex[2:p,] <- reduced[indices,]
 
-  pm1 <- 1:p-1 # create a range from 1 to p minus 1
+  pm1 <- 1:(p-1) # create a range from 1 to p minus 1
   
   update <- function(simplex, p) {
     g <- matrix(0, nrow=p, ncol=p-1)
