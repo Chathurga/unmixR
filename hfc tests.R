@@ -20,3 +20,10 @@ img <- read.ENVI(file = "~/Desktop/blind_test/HyMap/blind_test_refl.img")
 res <- hfc(img[[]], al) # 15 15 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13
 
 # blind test image takes about 12 sec to compute (224000 x 126)
+
+# AVIRIS cuprite data set, scene 1
+cup <- read.ENVI("~/Desktop/f970619t01p02r02c/f970619t01p02_r02_sc01.a.rfl")
+plotmap(cup) # looks good
+al <- seq(-1, -10, by = -1)
+al <- 10^al
+res <- hfc(cup[[]], al) # 38 36 35 34 34 34 34 34 33 32 (about 45 sec)
