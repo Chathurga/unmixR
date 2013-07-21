@@ -1,4 +1,5 @@
-### spec.unmixing: An R package for unmixing of hyperspectral images
+### spec.unmixing
+### An R package for unmixing of hyperspectral images
 
 `spec.unmixing is a WORK IN PROGRESS`.  The fundamental structures & behavior are changing frequently.
 
