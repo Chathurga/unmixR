@@ -28,7 +28,7 @@ nfindr99 <- function(data, p, iters=3*p) {
   
   # reduce the dimensionality of the data using PCA
   # do nothing if the data was passed in already reduced
-  if (ncol(data) != p - 1) { #CB variates are in columns
+  if (ncol(data) != p - 1) {
     data <- prcomp(data)$x[,1:(p-1),drop=F]
   }
   
@@ -41,13 +41,13 @@ nfindr99 <- function(data, p, iters=3*p) {
   
   # calculate the initial volume using the random endmembers
   volume <- abs(det(simplex))
-  it <- 1
-  v1 <- -1 #CB maybe rename to volume.lastit
-  v2 <- volume  #CB maybe rename to volume.thisit
+  volume.prev <- -1
+  volume.now <- volume
   
   # keep replacing endmembers until there is never an increase in volume
   # or the max iterations are reached (indicates pure endmembers not found)
-  while (v2 > v1 && it <= iters) {
+  iter <- 1
+  while (volume.now > volume.prev && iter <= iters) {
     for (k in 1:p) {
       for (i in 1:nspectra) {
         # store current sample as it may need to be placed back into the
@@ -72,9 +72,9 @@ nfindr99 <- function(data, p, iters=3*p) {
       }
     }
     
-    it <- it+1
-    v1 <- v2
-    v2 <- volume
+    iter <- iter+1
+    volume.prev <- volume.now
+    volume.now <- volume
   }
   
   indices
