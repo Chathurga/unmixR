@@ -34,16 +34,16 @@ hfcV <- function(data, alpha) {
   # Warning: covariance and correlation usage conforms to the EE definitions
   # not the standard statistical definitions
   
-  nv <- dim(data)[2] # number of variables/frequencies
+  nv <- dim(data)[2] # number of variables/frequencies
   data <- t(data)
   
   # R is the sample correlation matrix (nomenclature same as in references)
   # R & K (below) have dimensions nv x nv
-  R <- tcrossprod(data)/nv
+  R <- tcrossprod(data)/nv
 
   # K is the sample covariance matrix, called R in Bajorski, K in Chang
   rM <- rowMeans(data)
-  K <- ((data - rM) %*% t(data - rM))/nv
+  K <- ((data - rM) %*% t(data - rM))/nv
 
   # these next variables are vectors w/length nv
 

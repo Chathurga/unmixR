@@ -33,15 +33,15 @@ hfcS <- function(data, alpha) {
   # Warning: covariance and correlation usage conforms to the EE definitions
   # not the standard statistical definitions
   
-  ns <- dim(data)[1] # number of samples
+  ns <- dim(data)[1] # number of samples
   
   # R is the sample correlation matrix (nomenclature same as in references)
   # R & K (below) will have dimensions ns x ns
-  R <- tcrossprod(data)/ns
+  R <- tcrossprod(data)/ns
 
   # K is the sample covariance matrix, called R in Bajorski, K in Chang
   cM <- colMeans(data)
-  K <- ((data - cM) %*% t(data - cM))/ns
+  K <- ((data - cM) %*% t(data - cM))/ns
 
   # these next variables are vectors w/length ns
 
