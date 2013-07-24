@@ -24,18 +24,17 @@
 
 nfindr99 <- function(data, p, iters=3*p) {
   data <- as.matrix(data)
-  nspectra <- dim(data)[1]
+  nspectra <- nrow(data)
   
   # reduce the dimensionality of the data using PCA
   # do nothing if the data was passed in already reduced
-  reduced <- data  #CB maybe use data all the way -> see comment on return value 
-  if (ncol (data) != p - 1) { #CB variates are in columns
-    reduced <- prcomp(data)$x[,1:(p-1),drop=F]
+  if (ncol(data) != p - 1) { #CB variates are in columns
+    data <- prcomp(data)$x[,1:(p-1),drop=F]
   }
   
   # select random indices that form the initial simplex
   # this simplex will be inflated until the pure pixels are found
-  indices <- sample(nrow(reduced), p)
+  indices <- sample(nspectra, p)
   simplex <- matrix(0, nrow=p, ncol=p)
   simplex[1,] <- 1
   simplex[2:p,] <- reduced[indices,]
@@ -57,7 +56,7 @@ nfindr99 <- function(data, p, iters=3*p) {
         
         # replace the k-th endmember with the i-th reduced spectrum
         # and recalculate the volume
-        simplex[2:p,k] <- reduced[i,]
+        simplex[2:p,k] <- data[i,]
         testVolume <- abs(det(simplex))
         
         # if the replacement increased the volume then keep the replacement
