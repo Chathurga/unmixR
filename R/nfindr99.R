@@ -78,10 +78,5 @@ nfindr99 <- function(data, p, iters=3*p) {
     v2 <- volume
   }
   
-  
-  #CB: return only indices, the structure can be constructed in nfinder.default (the wrapper for all N-FINDR methods)
-  structure(list(
-    data = if (!identical(data, reduced)) data else NULL,
-    indices = indices
-  ), class = "nfindr")
+  indices
 }
