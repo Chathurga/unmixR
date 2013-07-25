@@ -12,6 +12,7 @@ nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   
   # reduce the dimensionality of the data using PCA
   # do nothing if the data was passed in already reduced
+  orig <- data
   if (ncol(data) != p - 1) {
     data <- prcomp(data)$x[,1:(p-1),drop=F]
   }
@@ -21,16 +22,16 @@ nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   indices <- sample(nrow(data), p)
   simplex <- matrix(0, nrow=p, ncol=p)
   simplex[1,] <- 1
-  simplex[2:p,] <- reduced[indices,]
+  simplex[2:p,] <- data[indices,]
   
   # get the selected nfindr method
   nfindrFunc <- get(paste("nfindr", method, sep=""))
   # call the function to get the indices of the endmembers
-  indices <- nfindrFunc(data, p, iters=iters)
+  indices <- nfindrFunc(data, p, simplex, indices, iters=iters)
   
   # return a model
   structure(list(
-    data = if (!drop) data else NULL,
+    data = if (!drop) orig else NULL,
     indices = indices
   ), class = "nfindr")
 }
