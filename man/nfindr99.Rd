@@ -2,7 +2,7 @@
 \alias{nfindr99}
 \title{Michael E. Winter's 1999 N-FINDR unmixing algorithm}
 \usage{
-  nfindr99(data, p, iters = 3 * p)
+  nfindr99(data, p, simplex, indices, iters)
 }
 \arguments{
   \item{data}{Data to unmix. Will be converted to a matrix

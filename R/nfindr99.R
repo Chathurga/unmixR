@@ -22,22 +22,8 @@
 ##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);
 ##'   doi:10.1117/12.366289;
 
-nfindr99 <- function(data, p, iters=3*p) {
-  data <- as.matrix(data)
+nfindr99 <- function(data, p, simplex, indices, iters) {
   nspectra <- nrow(data)
-  
-  # reduce the dimensionality of the data using PCA
-  # do nothing if the data was passed in already reduced
-  if (ncol(data) != p - 1) {
-    data <- prcomp(data)$x[,1:(p-1),drop=F]
-  }
-  
-  # select random indices that form the initial simplex
-  # this simplex will be inflated until the pure pixels are found
-  indices <- sample(nspectra, p)
-  simplex <- matrix(0, nrow=p, ncol=p)
-  simplex[1,] <- 1
-  simplex[2:p,] <- reduced[indices,]
   
   # calculate the initial volume using the random endmembers
   volume <- abs(det(simplex))
