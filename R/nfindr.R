@@ -20,14 +20,12 @@ nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   # select random indices that form the initial simplex
   # this simplex will be inflated until the pure pixels are found
   indices <- sample(nrow(data), p)
-  simplex <- matrix(0, nrow=p, ncol=p)
-  simplex[1,] <- 1
-  simplex[2:p,] <- data[indices,]
+  simplex <- rbind(rep(1, p), data[indices,])
   
   # get the selected nfindr method
   nfindrFunc <- get(paste("nfindr", method, sep=""))
   # call the function to get the indices of the endmembers
-  indices <- nfindrFunc(data, p, simplex, indices, iters=iters)
+  indices <- nfindrFunc(data, p, simplex, indices, iters)
   
   # return a model
   structure(list(
