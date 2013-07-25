@@ -1,17 +1,5 @@
-nfindrLDU <- function(data, p) {
-  data <- as.matrix(data) #CB: do that in switchyard function nfindr.default - needs to be done for 
-                          #    all nfindr methods. Possibly even done (automagically) by 
-                          #    nfindr.formula?
-  nspectra <- nrow (data) #dim(data)[1]
-  
-  reduced <- prcomp(data)$x[,1:(p-1),drop=F] # maybe same as for as.matrix
-
-  indices <- sample(nspectra, p) #CB: make parameter, as decided for nfindr99.
-  simplex <- matrix(0, nrow=p, ncol=p)
-  simplex[1,] <- 1
-  simplex[2:p,] <- reduced[indices,]
-  #CB: simplex <- rbind (rep (1, p), reduced [indices,])
-
+nfindrLDU <- function(data, p, simplex, indices, ...) {
+  nspectra <- nrow(data)
   pm1 <- 1:(p-1) # create a range from 1 to p minus 1
   
   update <- function(simplex, p) {
@@ -49,7 +37,7 @@ nfindrLDU <- function(data, p) {
     replace <- FALSE
     
     for (j in 1:nspectra) {
-      y <- c(1, reduced[j,])
+      y <- c(1, data[j,])
       bj <- y[1:(p-1)]
       dj <- y[p]
       
