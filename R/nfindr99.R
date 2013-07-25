@@ -1,22 +1,15 @@
 ##' Michael E. Winter's 1999 N-FINDR unmixing algorithm
 ##' 
-##' This technique is based on the fact that in N spectral dimensions, the
-##' N-volume contained by a simplex formed of the purest pixels is larger
-##' than any other volume formed from any other combination of pixels.
+##' This method should only be called from \code{\link{nfindr}}. See that
+##' function for the full description
 ##' 
-##' @param data Data to unmix. Will be converted to a matrix using as.matrix.
-##'   The matrix should contain a spectrum per row.
-##' @param p Number of endmembers (will be estimated using \code{\link{hfc}}
-##'   if omitted)
-##' @param iters Max number of iterations (defaults to 3 * p)
-##' @return A structure which contains:
-##'   \itemize{
-##'     \item \strong{data}: the original data (or NULL if the input data was
-##'                          already reduced)
-##'     \item \strong{indices}: the indices of the spectra which increased
-##'                             the simplex volume the most. These are the
-##'                             indices of the endmembers
-##'   }
+##' @param data Data matrix to unmix
+##' @param p Number of endmembers
+##' @param simplex The initial simplex estimation
+##' @param indices Indices used in the simplex estimation
+##' @param iters Max number of iterations
+##' @return The indices that indicate the position of the endmembers in the
+##'   original dataset
 ##' @references Michael E. Winter; "N-FINDR: an algorithm for fast autonomous
 ##'   spectral end-member determination in hyperspectral data", Proc.
 ##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);

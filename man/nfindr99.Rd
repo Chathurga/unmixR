@@ -5,28 +5,24 @@
   nfindr99(data, p, simplex, indices, iters)
 }
 \arguments{
-  \item{data}{Data to unmix. Will be converted to a matrix
-  using as.matrix.  The matrix should contain a spectrum
-  per row.}
+  \item{data}{Data matrix to unmix}
 
-  \item{p}{Number of endmembers (will be estimated using
-  \code{\link{hfc}} if omitted)}
+  \item{p}{Number of endmembers}
 
-  \item{iters}{Max number of iterations (defaults to 3 *
-  p)}
+  \item{simplex}{The initial simplex estimation}
+
+  \item{indices}{Indices used in the simplex estimation}
+
+  \item{iters}{Max number of iterations}
 }
 \value{
-  A structure which contains: \itemize{ \item
-  \strong{data}: the original data (or NULL if the input
-  data was already reduced) \item \strong{indices}: the
-  indices of the spectra which increased the simplex volume
-  the most. These are the indices of the endmembers }
+  The indices that indicate the position of the endmembers
+  in the original dataset
 }
 \description{
-  This technique is based on the fact that in N spectral
-  dimensions, the N-volume contained by a simplex formed of
-  the purest pixels is larger than any other volume formed
-  from any other combination of pixels.
+  This method should only be called from
+  \code{\link{nfindr}}. See that function for the full
+  description
 }
 \references{
   Michael E. Winter; "N-FINDR: an algorithm for fast
