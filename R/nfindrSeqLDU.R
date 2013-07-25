@@ -1,14 +1,5 @@
-nfindrSeqLDU <- function(data, p) {
-  data <- as.matrix(data)
-  nspectra <- dim(data)[1]
-  
-  reduced <- prcomp(data)$x[,1:(p-1),drop=F]
-
-  indices <- sample(nspectra, p)
-  simplex <- matrix(0, nrow=p, ncol=p)
-  simplex[1,] <- 1
-  simplex[2:p,] <- reduced[indices,]
-  
+nfindrSeqLDU <- function(data, p, simplex, indices, ...) {
+  nspectra <- nrow(data)
   pm1 <- 1:(p-1) # create a range from 1 to p minus 1
   g <- matrix(0, nrow=p, ncol=p-1)
   V <- pm1
@@ -34,7 +25,7 @@ nfindrSeqLDU <- function(data, p) {
       V[i] <- as.numeric(abs(d - crossprod(g[i,], b)))
       
       for (j in 1:nspectra) {
-        y <- c(1, reduced[j,])
+        y <- c(1, data[j,])
         bj <- y[1:(p-1)]
         dj <- y[p]
         
