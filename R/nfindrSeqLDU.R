@@ -11,9 +11,7 @@ nfindrSeqLDU <- function(data, p, simplex, indices, ...) {
     for (i in 1:p) {
       dup <- simplex # make a copy of the simplex
       # swap the i-th and p-th columns of the simplex
-      temp <- dup[,p]
-      dup[,p] = dup[,i]
-      dup[,i] = temp
+      dup [, c(p, i)] <- dup [, c(i, p)]
       
       # get the partitioned components of the simplex matrix
       A <- dup[pm1,pm1]

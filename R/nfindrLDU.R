@@ -9,10 +9,7 @@ nfindrLDU <- function(data, p, simplex, indices, ...) {
     for (i in 1:p) {
       dup <- simplex
       # swap the i-th and p-th columns of the simplex
-      swaps <- 1:p
-      swaps[p] = i
-      swaps[i] = p
-      dup <- dup[,swaps]  #CB: dup [, c (p, i)] <- dup [, c (i, p)]
+      dup [, c(p, i)] <- dup [, c(i, p)]
       
       # get the partitioned components of the simplex matrix
       A <- dup[pm1,pm1]
