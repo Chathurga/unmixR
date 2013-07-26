@@ -1,7 +1,9 @@
 ##' Michael E. Winter's 1999 N-FINDR unmixing algorithm
 ##' 
-##' This method should only be called from \code{\link{nfindr}}. See that
-##' function for the full description
+##' This method should only be called from \code{\link{nfindr}}.
+##' This technique is based on the fact that, in N spectral dimensions, the
+##' N-volume contained by a simplex formed of the purest pixels is larger
+##' than any other volume formed from any other combination of pixels.
 ##' 
 ##' @param data Data matrix to unmix
 ##' @param p Number of endmembers
