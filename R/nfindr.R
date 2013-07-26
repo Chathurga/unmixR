@@ -37,6 +37,10 @@ nfindr <- function(data, p, method, iters, drop, ...) UseMethod("nfindr")
 nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   methods <- c("99", "LDU", "SeqLDU") # valid methods
   
+  if (!is.integer(p) || p < 2) {
+    stop("p must be a positive integer greater than 2")
+  }
+  
   # check if the method passed in is valid
   if (!method %in% methods) {
     methodsStr <- paste(methods, collapse=", ")
