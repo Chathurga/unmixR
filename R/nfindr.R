@@ -37,6 +37,7 @@ nfindr <- function(data, p, method, iters, drop, ...) UseMethod("nfindr")
 nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   methods <- c("99", "LDU", "SeqLDU") # valid methods
   
+  # check for p being with the valid range, >= 2
   if (!is.integer(p) || p < 2) {
     stop("p must be a positive integer greater than 2")
   }
@@ -54,7 +55,7 @@ nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   # do nothing if the data was passed in already reduced
   orig <- data
   if (ncol(data) != p - 1) {
-    data <- prcomp(data)$x[,1:(p-1),drop=F]
+    data <- prcomp(data)$x[, 1:(p-1), drop=FALSE]
   }
   
   # select random indices that form the initial simplex
