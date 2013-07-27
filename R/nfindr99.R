@@ -12,6 +12,7 @@
 ##' @param iters Max number of iterations
 ##' @return The indices that indicate the position of the endmembers in the
 ##'   original dataset
+##' 
 ##' @references Michael E. Winter; "N-FINDR: an algorithm for fast autonomous
 ##'   spectral end-member determination in hyperspectral data", Proc.
 ##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);

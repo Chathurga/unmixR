@@ -5,7 +5,14 @@
 ##' permuted to the last position and reuses those decompositions on each
 ##' pixel until a permanent replacement requires the calculation of a new set
 ##' of decompositions
-##'
+##' 
+##' @param data Data matrix to unmix
+##' @param p Number of endmembers
+##' @param simplex The initial simplex estimation
+##' @param indices Indices used in the simplex estimation
+##' @return The indices that indicate the position of the endmembers in the
+##'   original dataset
+##' 
 ##' @references  Dowler, Shaun W.; Takashima, Reymond; Andrews, Mark;
 ##'   "Reducing the complexity of the N-FINDR algorithm for hyperspectral
 ##'   image analysis.", IEEE Trans Image Process. 2013 Jul;22(7):2835-48l

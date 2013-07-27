@@ -4,7 +4,14 @@
 ##' While LDU N-FINDR examines a single pixel in each endmember position and
 ##' repeats over all pixels, this algorithm considers all pixels in a single
 ##' endmember position and then repeats over all endmember positions.
-##'
+##' 
+##' @param data Data matrix to unmix
+##' @param p Number of endmembers
+##' @param simplex The initial simplex estimation
+##' @param indices Indices used in the simplex estimation
+##' @return The indices that indicate the position of the endmembers in the
+##'   original dataset
+##' 
 ##' @references  Dowler, Shaun W.; Takashima, Reymond; Andrews, Mark;
 ##'   "Reducing the complexity of the N-FINDR algorithm for hyperspectral
 ##'   image analysis.", IEEE Trans Image Process. 2013 Jul;22(7):2835-48l

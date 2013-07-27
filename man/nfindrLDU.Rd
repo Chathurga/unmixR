@@ -4,6 +4,19 @@
 \usage{
   nfindrLDU(data, p, simplex, indices, ...)
 }
+\arguments{
+  \item{data}{Data matrix to unmix}
+
+  \item{p}{Number of endmembers}
+
+  \item{simplex}{The initial simplex estimation}
+
+  \item{indices}{Indices used in the simplex estimation}
+}
+\value{
+  The indices that indicate the position of the endmembers
+  in the original dataset
+}
 \description{
   This method should only be called from
   \code{\link{nfindr}}. This approach calculates M LU
