@@ -1,4 +1,4 @@
-Package: spec.unmixing
+Package: unmixR
 Type: Package
 Title: Spectral Unmixing Methods
 Version: 1.0

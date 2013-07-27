@@ -2,12 +2,12 @@
 ##' to recover pure component spectra and their respective concentrations
 ##' from a set of measured spectra.
 ##' 
-##' @name spec.unmixing-package
+##' @name unmixR-package
 ##' @title Spectral Unmixing Methods
 ##' @docType package
 ##' @author Conor McManus
 ##' 
 ##' Maintainer: Conor McManus <chathurga@@gmail.com>
-##' @rdname spec.unmixing-package
+##' @rdname unmixR-package
 ##' @keywords package
 NULL
