@@ -13,6 +13,10 @@
 ##' @export
 
 predict.nfindr <- function(object, ...) {
+  if (is.null(object$data)) {
+    stop("Orginal data was dropped, needs to be reassigned to object$data")
+  }
+  
   data <- object$data
   endmembers <- t(data[object$indices,])
   
