@@ -5,8 +5,10 @@
 ##' pixels is larger than any other volume formed from any other combination
 ##' of pixels.
 ##' 
-##' @param data Data to unmix. Will be converted to a matrix using as.matrix.
-##'   The matrix should contain a spectrum per row.
+##' @param data Data to unmix. It will be converted to a matrix using
+##'   as.matrix. The matrix should contain a spectrum per row. This data will
+##'   be dimensionally reduced using PCA. If you want to reduce the data using
+##'   some other method then reduce it first and set drop to \code{TRUE}
 ##' @param p Number of endmembers
 ##' @param method The N-FINDR algorithm to use. Options:
 ##'   \itemize{
