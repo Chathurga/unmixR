@@ -12,24 +12,27 @@ Note: hyperspectral data are also called 'imaging spectroscopy' and 'imaging spe
 An informal list to keep us on track.  Naturally, edit as you see fit.
 
 ##### Top priority
-* nfindr variants
-    * nfindr99: In working order, could be optimized
+* Unit tests on nfindr variants
+* Add'l comments for nfindrLDU and nfindrSeqLDU
+* Add options beyond nnls to predict.nfindr
+* Improve endmember.R
+* nfindr variants (do these all work as expected?)
+    * nfindr99
     * nfindrLDU
     * nfindrSeqLDU
-* predict.nfindr
-* class definition(s)
-* changes needed for build & check
+* class definition(s): nfindr currently informally defined at end of nfindr.default.  Do we need/want to create an Rd page about it?
+* changes needed for build & check (?)
 * vignettes
 
 ##### Lower priority
 
 * methods for finding the number of endmembers (recommended in Harsayni2012)
-    * hfc (prelim version seems OK)
+    * hfc (hfcVAR and hfcSAMPLE need discussion and testing)
     * nwhfc
     * sml (second moment linear)
     * Hysime (hyperspectral signal subspace identification by minimum error)
 
 ##### Misc notes
 
-* A possible name for the package is `unmixR`
+* ?
 
