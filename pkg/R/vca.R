@@ -1,6 +1,12 @@
 ##' Vertex Component Analysis unmixing algorithm
 ##' 
-##' -- DESCRIPTION --
+##' This algorithm is based on the geometry of convex sets. It exploits the
+##' fact that endmembers occupy the vertices of a simplex.
+##' 
+##' @param data Data to unmix. It will be converted to a matrix using
+##'   as.matrix. The matrix should contain a spectrum per row.
+##' @param p Number of endmembers
+##' @return Endmember indices
 ##' 
 ##' @references Nascimento, J.M.P.; Bioucas Dias, J.M., "Vertex component
 ##'   analysis: a fast algorithm to unmix hyperspectral data," Geoscience and
