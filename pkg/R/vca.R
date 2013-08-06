@@ -20,11 +20,26 @@ vca <- function(data, p) {
   nspectra <- nrow(data)
   nsamples <- ncol(data)
   
-  SNRth <- 15 + 10 * log10(p)
+  # estimate the signal to noise ratio
+  rowMean <- apply(data, 1, mean) # get the mean of each row
+  # repeat the column of row means so that it matches the size of the data
+  repMean <- as.matrix(rowMean)[, rep(1, nsamples)]
+  zMean <- data - repMean # zero mean the data
   
+  Ud <- svd(tcrossprod(zMean) / nsamples, nv=p)$v
+  E <- function(M, n) sum(c(M)^2 / n) # expectation operator
+  pr <- E(data, nsamples)
+  prp <- E(crossprod(Ud, zMean), nsamples) + crossprod(rowMean)
+  SNR <- 10 * log10((prp - (p / nspectra) * pr) / (pr - prp))
+  
+  # signal to noise threshold
+  SNRth <- 15 + 10 * log10(p)
+  # if the estimated SNR is over a certain threshold ...
   if (SNR > SNRth) {
     d <- p
   } else {
     d <- p - 1
   }
+  
+  SNR
 }
