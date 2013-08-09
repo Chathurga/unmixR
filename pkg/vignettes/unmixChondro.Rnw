@@ -1,0 +1,63 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{analyse hyperSpec's chondro data set with spectral unmixing}
+%\VignetteDepends{hyperSpec}
+\documentclass[DIV13, 10pt, headings = small]{scrartcl}
+\begin{document}
+<<initknitr, echo = FALSE, message=FALSE, results='hide'>>=
+knitr::opts_knit$set (self.contained=FALSE)
+knitr::opts_chunk$set (fig.width=10, fig.height=6)
+@
+<<init>>=
+require ("hyperSpec")
+require ("hyperSpec.matrixStats")
+require ("spec.unmixing")
+@
+
+<<>>=
+chondro <- chondro - spc.fit.poly.below (chondro)
+chondro <- sweep (chondro, 1, rowMeans (chondro), `/`)
+chondro <- sweep (chondro, 2, quantile (chondro, 0.05), `-`)
+chondro <- chondro [! is.na (chondro$clusters)]
+@
+
+Numerical rank of matrix:
+<<>>=
+plot (log10 (svd (chondro [[]])$d), pch = 20)
+
+zero <- sample (0:1, length (chondro [[]]), replace = TRUE) * .Machine$double.eps
+dim (zero) <- dim (chondro [[]])
+#abline (h = log10 (svd (zero)$d [1]))
+points (log10 (svd (zero)$d), pch = 20, cex = 0.5, col = "red")
+
+zero <- rnorm (length (chondro [[]]), sd = 0.0025) 
+dim (zero) <- dim (chondro [[]])
+points (log10 (svd (zero)$d), pch = 20, cex = 0.5, col = "green")
+@
+
+<<>>=
+plot (log10 (svd (hyperSpec::chondro [[]])$d[1:11]), pch = 20)
+@
+
+<<>>=
+plot (chondro)
+plotmap (chondro [,, 785], col.regions = alois.palette)
+plotmap (chondro [,, 937], col.regions = alois.palette)
+plotmap (chondro [,, 1090], col.regions = alois.palette)
+plotmap (chondro [,, 1295], col.regions = alois.palette)
+@
+
+Winter 1999:
+<<>>=
+pca <- prcomp (chondro, center = FALSE)
+plot (decomposition (chondro, t (pca$rotation [,1:10])), stacked = T)
+
+
+e <- nfindr99 (chondro, p=3)
+endmembers <- decomposition (chondro, e$data [e$indices,])
+plot (endmembers, stacked = T)
+
+abundances <- decomposition (chondro, predict (e))
+plotmap (abundances, spc ~ x * y | .wavelength, col.regions = alois.palette ())
+@
+
+\end{document}
