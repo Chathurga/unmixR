@@ -1,1 +1,2 @@
-exportPattern("^[[:alpha:]]+")
+export(unmixR.unittest)
+S3method(predict,nfindr)

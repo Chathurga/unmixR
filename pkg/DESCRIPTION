@@ -9,6 +9,24 @@ Description: Implements the N-FINDR and Vertex Component Analysis algorithms
     to recover pure component spectra and their respective concentrations
     from a set of measured spectra.
 License: GPL (>= 3)
-Depends: nnls
-Suggests: hyperSpec, knitr
+Depends:
+    nnls
+Suggests:
+    hyperSpec,
+    knitr,
+    svUnit
 VignetteBuilder: knitr
+Collate:
+    'unmixR-package.R'
+    'endmembers.R'
+    'hfc.R'
+    'hfc2.R'
+    'hfcSAMPLE.R'
+    'hfcVAR.R'
+    'nfindr.R'
+    'nfindr99.R'
+    'nfindrLDU.R'
+    'nfindrSeqLDU.R'
+    'predict.nfindr.R'
+    'unittests.R'
+    'vca.R'

@@ -10,6 +10,7 @@
 ##' @param simplex The initial simplex estimation
 ##' @param indices Indices used in the simplex estimation
 ##' @param iters Max number of iterations
+##' @include unmixR-package.R
 ##' @return The indices that indicate the position of the endmembers in the
 ##'   original dataset
 ##' 
@@ -60,4 +61,11 @@ nfindr99 <- function(data, p, simplex, indices, iters) {
   }
   
   indices
+}
+
+.test (nfindr99) <- function (){
+  e <- nfindr99 (data = diag (3), p = 2, simplex = rbind(rep(1, 3), diag (3)[1:2,]),
+                 iters = 0, i = 1 : 2)
+  checkTrue (e == 1 : 2)
+
 }
