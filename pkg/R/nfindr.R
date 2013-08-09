@@ -40,7 +40,7 @@ nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   methods <- c("99", "LDU", "SeqLDU") # valid methods
   
   # check for p being with the valid range, >= 2
-  if (!is.integer(p) || p < 2) {
+  if (!is.numeric(p) || p < 2) {
     stop("p must be a positive integer greater than 2")
   }
   
