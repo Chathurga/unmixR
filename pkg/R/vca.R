@@ -17,8 +17,21 @@ vca <- function(data, p) {
   # get the matrix representation of the input (if it's some other class)
   data <- t(as.matrix(data))
   
+  # BH: I think the language here is sort of reversed: an entire spectrum
+  # is a sample in the usual lingo.  In my mind nspectra is the no. of 
+  # samples. I'd prefer to call ncol(data) nfreq for no of frequencies
+  # or if you want to stick close to the nomenclature in the VCA paper
+  # I think it would be L (if you call it something else, identify it as
+  # L in the paper)
   nspectra <- nrow(data)
   nsamples <- ncol(data)
+  
+  # BH: estimating SNR is more complex than it seems: you need to find
+  # 'peaks' and 'noise' separately, then ratio them.  The problem
+  # comes in identifying peaks, which by definition exceed the noise by
+  # some threshold.  Determining the threshold is tricky.
+  # Package ChemometricsWithR has some peak finding functions
+  # and I have adapted a few of them - let me know if they are of interest.
   
   # estimate the signal to noise ratio
   rowMean <- apply(data, 1, mean) # get the mean of each row
@@ -33,7 +46,10 @@ vca <- function(data, p) {
   prp <- E(crossprod(Ud, zMean), nsamples) + crossprod(rowMean)
   SNR <- 10 * log10((prp - (p / nspectra) * pr) / (pr - prp))
   
-  # signal to noise threshold
+  # signal to noise threshold # BH: this is the initial, crude SNR and
+  # I would suggest computing it earlier to make it clear.
+  # This value will certainly be replaced on the first iteration.
+  
   SNRth <- 15 + 10 * log10(p)
   # if the estimated SNR is over a certain threshold ...
   if (SNR > SNRth) {
