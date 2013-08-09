@@ -15,7 +15,7 @@
 
 vca <- function(data, p) {
   # get the matrix representation of the input (if it's some other class)
-  data <- as.matrix(data)
+  data <- t(as.matrix(data))
   
   nspectra <- nrow(data)
   nsamples <- ncol(data)
@@ -23,10 +23,11 @@ vca <- function(data, p) {
   # estimate the signal to noise ratio
   rowMean <- apply(data, 1, mean) # get the mean of each row
   # repeat the column of row means so that it matches the size of the data
-  repMean <- as.matrix(rowMean)[, rep(1, nsamples)]
+  repMean <- repvec.col(rowMean, nsamples)
   zMean <- data - repMean # zero mean the data
+  Ud <- svd(tcrossprod(zMean) / nsamples, nv=p)$u[,1:p]
+  zProj <- crossprod(Ud, zMean) # project the zero mean data
   
-  Ud <- svd(tcrossprod(zMean) / nsamples, nv=p)$v
   E <- function(M, n) sum(c(M)^2 / n) # expectation operator
   pr <- E(data, nsamples)
   prp <- E(crossprod(Ud, zMean), nsamples) + crossprod(rowMean)
@@ -37,9 +38,44 @@ vca <- function(data, p) {
   # if the estimated SNR is over a certain threshold ...
   if (SNR > SNRth) {
     d <- p
+    Ud <- svd(tcrossprod(data) / nsamples)$u[,1:d]
+    
+    x <- crossprod(Ud, data)
+    u <- apply(x, 1, mean)
+    dataProj <- Ud %*% x[1:d,] # project the input matrix
+    
+    repu <- repvec.col(u, nsamples)
+    y <- x / repvec.row(apply(t(x * repu), 1, sum), d)
   } else {
     d <- p - 1
+    
+    x <- zProj[1:d, ]
+    dataProj <- Ud[, 1:d] %*% x + repMean
+    c <- max(sum(x^2))^0.5
+    y <- rbind(x, c)
   }
   
-  SNR
+  indices <- array(0, p)
+  A <- matrix(0, nrow=p, ncol=p)
+  A[p,1] <- 1
+  
+  for (i in 1:p) {
+    w <- runif(p)
+    f <- w - A %*% ginv(A) %*% w;
+    f <- f / sqrt(sum(f^2));
+    
+    v <- abs(crossprod(f, y))
+    indices[i] <- which.max(v) # get index of max value
+    A[,i] <- y[, indices[i]]
+  }
+  
+  endmembers <- dataProj[, indices]
+  
+  structure(list(
+    endmembers = t(endmembers),
+    indices = indices
+  ), class = "vca")
 }
+
+repvec.col <- function(v, n) as.matrix(v)[, rep(1, n)]
+repvec.row <- function(v, n) t(as.matrix(v))[rep(1, n), ]
