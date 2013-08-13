@@ -69,6 +69,8 @@ nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   nfindrFunc <- get(paste("nfindr", method, sep=""))
   # call the function to get the indices of the endmembers
   indices <- nfindrFunc(data, p, simplex, indices, iters)
+  # sort the indices to normalise the order between runs
+  indices <- sort(indices)
   
   # return a model
   structure(list(
