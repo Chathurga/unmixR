@@ -1,0 +1,3 @@
+library ("unmixR")
+unmixR.unittest ()
+
