@@ -30,3 +30,4 @@ Collate:
     'predict.nfindr.R'
     'unittests.R'
     'vca.R'
+    'mvca.R'
