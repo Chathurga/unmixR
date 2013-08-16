@@ -58,7 +58,7 @@ points (log10 (svd (zero)$d), pch = 20, cex = 0.5, col = "green")
 
 HFC:
 <<>>=
-hfc (laser [[]], alpha = c(.33, .1,.05,.01, .001), plot = TRUE)
+hfc (laser [[]], alpha = c(.33, .1,.05,.01, .001))
 @
 
 
