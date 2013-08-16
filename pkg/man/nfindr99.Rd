@@ -2,7 +2,7 @@
 \alias{nfindr99}
 \title{Michael E. Winter's 1999 N-FINDR unmixing algorithm}
 \usage{
-  nfindr99(data, p, simplex, indices, iters)
+  nfindr99(data, p, simplex, indices, iters = 3 * p)
 }
 \arguments{
   \item{data}{Data matrix to unmix}
@@ -13,7 +13,7 @@
 
   \item{indices}{Indices used in the simplex estimation}
 
-  \item{iters}{Max number of iterations}
+  \item{iters}{Max number of iterations, defaults to 3*p}
 }
 \value{
   The indices that indicate the position of the endmembers

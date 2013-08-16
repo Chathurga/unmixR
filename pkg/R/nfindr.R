@@ -17,10 +17,8 @@
 ##'     \item SeqLDU (\code{\link{nfindrSeqLDU}})
 ##'   }
 ##'   Default: LDU as it generally performs the best
-##' @param iters Only applies when using nfindr99, defines the max number of
-##'   iterations before the algorithm halts. This is only
-##'   hit in cases where the correct number of endmembers could not be found.
-##'   Default: 3*p
+##' @param ... Extra parameters that will get passed into selected method, see
+##'   selected method for options
 ##' @param drop Boolean that indicates whether the \code{data} parameter
 ##'   should be stored in the resulting structure. This should only be set to
 ##'   \code{True} when \code{data} was passed in already reduced
@@ -34,9 +32,13 @@
 ##'                             indices of the endmembers
 ##'   }
 
-nfindr <- function(data, p, method, iters, drop, ...) UseMethod("nfindr")
+nfindr <- function(data, p, method, indices, ..., drop) {
+  UseMethod("nfindr")
+}
 
-nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
+nfindr.default <- function(data, p,
+                           method="LDU", indices=sample(nrow(data), p), ...,
+                           drop=FALSE) {
   methods <- c("99", "LDU", "SeqLDU") # valid methods
   
   # check for p being with the valid range, >= 2
@@ -68,13 +70,13 @@ nfindr.default <- function(data, p, method="LDU", iters=3*p, drop=FALSE) {
   # get the selected nfindr method
   nfindrFunc <- get(paste("nfindr", method, sep=""))
   # call the function to get the indices of the endmembers
-  indices <- nfindrFunc(data, p, simplex, indices, iters)
+  indices <- nfindrFunc(data, p, simplex, indices, ...)
   # sort the indices to normalise the order between runs
   indices <- sort(indices)
   
   # return a model
   structure(list(
-    data = if (!drop) orig else NULL,
-    indices = indices
+    data = if (!drop) orig else orig[indices,],
+    indices = if (!drop) indices else 1:p
   ), class = "nfindr")
 }

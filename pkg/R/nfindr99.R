@@ -9,7 +9,7 @@
 ##' @param p Number of endmembers
 ##' @param simplex The initial simplex estimation
 ##' @param indices Indices used in the simplex estimation
-##' @param iters Max number of iterations
+##' @param iters Max number of iterations, defaults to 3*p
 ##' @include unmixR-package.R
 ##' @return The indices that indicate the position of the endmembers in the
 ##'   original dataset
@@ -19,7 +19,7 @@
 ##'   SPIE 3753, Imaging Spectrometry V, 266 (October 27, 1999);
 ##'   doi:10.1117/12.366289;
 
-nfindr99 <- function(data, p, simplex, indices, iters) {
+nfindr99 <- function(data, p, simplex, indices, iters=3*p) {
   nspectra <- nrow(data)
   
   # calculate the initial volume using the random endmembers

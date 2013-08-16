@@ -2,7 +2,7 @@
 \alias{nfindr}
 \title{General interface to N-FINDR spectral unmixing implementations}
 \usage{
-  nfindr(data, p, method, iters, drop, ...)
+  nfindr(data, p, method, indices, ..., drop)
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a
@@ -20,10 +20,8 @@
   (\code{\link{nfindrSeqLDU}}) } Default: LDU as it
   generally performs the best}
 
-  \item{iters}{Only applies when using nfindr99, defines
-  the max number of iterations before the algorithm halts.
-  This is only hit in cases where the correct number of
-  endmembers could not be found.  Default: 3*p}
+  \item{...}{Extra parameters that will get passed into
+  selected method, see selected method for options}
 
   \item{drop}{Boolean that indicates whether the
   \code{data} parameter should be stored in the resulting
