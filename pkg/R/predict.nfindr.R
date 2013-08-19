@@ -5,6 +5,7 @@
 ##' 
 ##' @param object The N-FINDR structure returned by the general
 ##'   \code{\link{nfindr}} interface
+##' @param newdata 
 ##' @return A matrix where the abundances for an endmember are returned
 ##'   column-wise. Each value is in the range \code{0 - 1}
 ##' @rdname predict.nfindr
@@ -12,15 +13,10 @@
 ##' @S3method predict nfindr
 ##' @export
 
-predict.nfindr <- function(object, ...) {
-  if (is.null(object$data)) {
-    stop("Orginal data was dropped, needs to be reassigned to object$data")
-  }
+predict.nfindr <- function(object, newdata=object$data, ...) {
+  endmembers <- t(newdata[object$indices,])
   
-  data <- object$data
-  endmembers <- t(data[object$indices,])
-  
-  t(apply(data, 1, function (spectrum) {
+  t(apply(newdata, 1, function(spectrum) {
     nnls(endmembers, spectrum)$x
   }))
 }
