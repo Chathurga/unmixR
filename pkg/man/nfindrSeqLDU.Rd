@@ -2,14 +2,12 @@
 \alias{nfindrSeqLDU}
 \title{LDU-Sequential N-FINDR: Slightly modified LDU N-FINDR}
 \usage{
-  nfindrSeqLDU(data, p, simplex, indices, ...)
+  nfindrSeqLDU(data, p, indices, ...)
 }
 \arguments{
   \item{data}{Data matrix to unmix}
 
   \item{p}{Number of endmembers}
-
-  \item{simplex}{The initial simplex estimation}
 
   \item{indices}{Indices used in the simplex estimation}
 }
