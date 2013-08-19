@@ -70,7 +70,7 @@ nfindr.default <- function(data, p,
   # get the selected nfindr method
   nfindrFunc <- get(paste("nfindr", method, sep=""))
   # call the function to get the indices of the endmembers
-  indices <- nfindrFunc(data, p, simplex, indices, ...)
+  indices <- nfindrFunc(data, p, indices, ...)
   # sort the indices to normalise the order between runs
   indices <- sort(indices)
   

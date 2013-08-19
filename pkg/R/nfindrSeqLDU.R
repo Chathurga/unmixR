@@ -7,7 +7,6 @@
 ##' 
 ##' @param data Data matrix to unmix
 ##' @param p Number of endmembers
-##' @param simplex The initial simplex estimation
 ##' @param indices Indices used in the simplex estimation
 ##' @return The indices that indicate the position of the endmembers in the
 ##'   original dataset
@@ -17,7 +16,7 @@
 ##'   image analysis.", IEEE Trans Image Process. 2013 Jul;22(7):2835-48l
 ##'   doi: 10.1109/TIP.2012.2219546
 
-nfindrSeqLDU <- function(data, p, simplex, indices, ...) {
+nfindrSeqLDU <- function(data, p, indices, ...) {
   nspectra <- nrow(data)
   pm1 <- 1:(p-1) # create a range from 1 to p minus 1
   g <- matrix(0, nrow=p, ncol=p-1)
