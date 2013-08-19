@@ -15,6 +15,7 @@
 ##'     \item 99 (\code{\link{nfindr99}})
 ##'     \item LDU (\code{\link{nfindrLDU}})
 ##'     \item SeqLDU (\code{\link{nfindrSeqLDU}})
+##'     \item Brute (\code{\link{nfindrBrute}})
 ##'   }
 ##'   Default: LDU as it generally performs the best
 ##' @param ... Extra parameters that will get passed into selected method, see
@@ -39,7 +40,7 @@ nfindr <- function(data, p, method, indices, ..., drop) {
 nfindr.default <- function(data, p,
                            method="LDU", indices=sample(nrow(data), p), ...,
                            drop=FALSE) {
-  methods <- c("99", "LDU", "SeqLDU") # valid methods
+  methods <- c("99", "LDU", "SeqLDU", "Brute") # valid methods
   
   # check for p being with the valid range, >= 2
   if (!is.numeric(p) || p < 2) {

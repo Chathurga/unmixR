@@ -17,7 +17,8 @@
   \item{method}{The N-FINDR algorithm to use. Options:
   \itemize{ \item 99 (\code{\link{nfindr99}}) \item LDU
   (\code{\link{nfindrLDU}}) \item SeqLDU
-  (\code{\link{nfindrSeqLDU}}) } Default: LDU as it
+  (\code{\link{nfindrSeqLDU}}) \item Brute
+  (\code{\link{nfindrBrute}}) } Default: LDU as it
   generally performs the best}
 
   \item{...}{Extra parameters that will get passed into
