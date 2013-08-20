@@ -18,7 +18,7 @@
 ##'   doi: 10.1109/TIP.2012.2219546
 
 nfindrLDU <- function(data, p, indices, ...) {
-  simplex <- .simplex(data, indices)
+  simplex <- .simplex(data, p, indices)
   nspectra <- nrow(data)
   pm1 <- 1:(p-1) # create a range from 1 to p minus 1
   

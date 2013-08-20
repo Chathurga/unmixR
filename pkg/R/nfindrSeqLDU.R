@@ -17,6 +17,7 @@
 ##'   doi: 10.1109/TIP.2012.2219546
 
 nfindrSeqLDU <- function(data, p, indices, ...) {
+  simplex <- .simplex(data, p, indices)
   nspectra <- nrow(data)
   pm1 <- 1:(p-1) # create a range from 1 to p minus 1
   g <- matrix(0, nrow=p, ncol=p-1)

@@ -19,7 +19,7 @@
 ##'   doi:10.1117/12.366289;
 
 nfindr99 <- function(data, p, indices, iters=3*p) {
-  simplex <- .simplex(data, indices)
+  simplex <- .simplex(data, p, indices)
   nspectra <- nrow(data)
   
   # calculate the initial volume using the random endmembers
