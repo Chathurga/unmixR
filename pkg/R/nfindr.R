@@ -66,7 +66,6 @@ nfindr.default <- function(data, p,
   # select random indices that form the initial simplex
   # this simplex will be inflated until the pure pixels are found
   indices <- sample(nrow(data), p)
-  simplex <- rbind(rep(1, p), data[indices,])
   
   # get the selected nfindr method
   nfindrFunc <- get(paste("nfindr", method, sep=""))
