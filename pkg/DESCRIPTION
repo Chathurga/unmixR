@@ -19,13 +19,15 @@ Suggests:
 VignetteBuilder: knitr
 Collate:
     'unmixR-package.R'
-    'endmembers.R'
     'nfindr.R'
     'nfindr99.R'
     'nfindrLDU.R'
     'nfindrSeqLDU.R'
+    'nfindrBrute.R'
     'predict.nfindr.R'
+    'endmembers.R'
+    'simplex.R'
     'unittests.R'
     'vca.R'
     'mvca.R'
-    'nfindrBrute.R'
+    'testdata.R'
