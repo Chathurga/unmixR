@@ -62,10 +62,3 @@ nfindr99 <- function(data, p, indices, iters=3*p) {
   
   indices
 }
-
-.test (nfindr99) <- function (){
-  e <- nfindr99 (data = diag (3), p = 2, simplex = rbind(rep(1, 3), diag (3)[1:2,]),
-                 iters = 0, i = 1 : 2)
-  checkTrue (e == 1 : 2)
-
-}
