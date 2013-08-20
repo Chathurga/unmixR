@@ -86,7 +86,12 @@ nfindr.default <- function(data, p,
   p <- 2
   indices <- c(1, 2)
   
-  # Test if all N-FINDR methods produce the same output
+  # test: nfindr produces an error for invalid values of p
+  
+  checkException(nfindr(laser, p="---"))
+  checkException(nfindr(laser, p=0))
+  
+  # test: all N-FINDR methods produce the same output
   
   methods <- c("99", "LDU", "SeqLDU", "Brute")
   
