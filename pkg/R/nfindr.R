@@ -83,21 +83,22 @@ nfindr.default <- function(data, p,
 }
 
 .test(nfindr) <- function() {
+  data <- laser
   p <- 2
   indices <- c(1, 2)
   
   # test: nfindr produces error for invalid values of p
   
-  checkException(nfindr(laser, p="---"))
-  checkException(nfindr(laser, p=0))
+  checkException(nfindr(data, p="---"))
+  checkException(nfindr(data, p=0))
   
   # test: nfindr produces error for invalid method
   
-  checkException(nfindr(laser, p, method="invalid"))
+  checkException(nfindr(data, p, method="invalid"))
   
   # test: nfindr default produces the correct answer
   
-  output <- nfindr(laser, p)$indices
+  output <- nfindr(data, p)$indices
   checkTrue(output == c(4, 79))
   
   # test: all N-FINDR methods produce the same output
@@ -105,7 +106,7 @@ nfindr.default <- function(data, p,
   methods <- c("99", "LDU", "SeqLDU", "Brute")
   
   outputs <- sapply(1:4, function(i) {
-    nfindr(laser, p, methods[i])$indices
+    nfindr(data, p, methods[i])$indices
   })
   
   checkTrue(all(outputs[,1] == outputs))
