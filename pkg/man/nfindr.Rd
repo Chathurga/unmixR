@@ -21,6 +21,10 @@
   (\code{\link{nfindrBrute}}) } Default: LDU as it
   generally performs the best}
 
+  \item{indices}{Locations of the rows in the dataset that
+  will be used to form the initial simplex. Default:
+  Randomly selected indices}
+
   \item{...}{Extra parameters that will get passed into
   selected method, see selected method for options}
 

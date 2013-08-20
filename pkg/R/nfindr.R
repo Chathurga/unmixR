@@ -18,6 +18,8 @@
 ##'     \item Brute (\code{\link{nfindrBrute}})
 ##'   }
 ##'   Default: LDU as it generally performs the best
+##' @param indices Locations of the rows in the dataset that will be used to
+##'   form the initial simplex. Default: Randomly selected indices
 ##' @param ... Extra parameters that will get passed into selected method, see
 ##'   selected method for options
 ##' @param drop Boolean that indicates whether the \code{data} parameter
@@ -62,10 +64,6 @@ nfindr.default <- function(data, p,
   if (ncol(data) != p - 1) {
     data <- prcomp(data)$x[, 1:(p-1), drop=FALSE]
   }
-  
-  # select random indices that form the initial simplex
-  # this simplex will be inflated until the pure pixels are found
-  indices <- sample(nrow(data), p)
   
   # get the selected nfindr method
   nfindrFunc <- get(paste("nfindr", method, sep=""))
