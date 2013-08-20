@@ -81,3 +81,18 @@ nfindr.default <- function(data, p,
     indices = if (!drop) indices else 1:p
   ), class = "nfindr")
 }
+
+.test(nfindr) <- function() {
+  p <- 2
+  indices <- c(1, 2)
+  
+  # Test if all N-FINDR methods produce the same output
+  
+  methods <- c("99", "LDU", "SeqLDU", "Brute")
+  
+  outputs <- sapply(1:4, function(i) {
+    nfindr(laser, p, methods[i])$indices
+  })
+  
+  checkTrue(all(outputs[,1] == outputs))
+}
