@@ -95,6 +95,11 @@ nfindr.default <- function(data, p,
   
   checkException(nfindr(laser, p, method="invalid"))
   
+  # test: nfindr default produces the correct answer
+  
+  output <- nfindr(laser, p)$indices
+  checkTrue(output == c(4, 79))
+  
   # test: all N-FINDR methods produce the same output
   
   methods <- c("99", "LDU", "SeqLDU", "Brute")
