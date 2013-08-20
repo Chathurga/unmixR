@@ -20,10 +20,6 @@ VignetteBuilder: knitr
 Collate:
     'unmixR-package.R'
     'endmembers.R'
-    'hfc.R'
-    'hfc2.R'
-    'hfcSAMPLE.R'
-    'hfcVAR.R'
     'nfindr.R'
     'nfindr99.R'
     'nfindrLDU.R'
