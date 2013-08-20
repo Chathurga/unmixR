@@ -30,4 +30,3 @@ Collate:
     'unittests.R'
     'vca.R'
     'mvca.R'
-    'testdata.R'
