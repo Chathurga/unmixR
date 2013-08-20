@@ -14,3 +14,20 @@
 .simplex <- function(data, p, indices) {
   rbind(rep(1, p), t(data[indices,]))
 }
+
+.test(.simplex) <- function() {
+  # test: verify the output of .simplex
+  
+  p <- 3
+  rows <- 5
+  indices <- c(1, 3, 5)
+  
+  data <- matrix(1:((p-1)*rows), ncol=p-1, nrow=rows, byrow=TRUE)
+  expected <- matrix(c(
+    c(1,1,1),
+    c(1,5,9),
+    c(2,6,10)
+  ), ncol=p, byrow=TRUE)
+  
+  checkEquals(expected, .simplex(data, p, indices))
+}
