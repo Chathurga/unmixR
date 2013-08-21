@@ -9,7 +9,9 @@
   \item{object}{The N-FINDR structure returned by the
   general \code{\link{nfindr}} interface}
 
-  \item{newdata}{}
+  \item{newdata}{If the data stored in the object is not
+  the data that should be checked for abundances then this
+  parameter allows for passing in new data}
 }
 \value{
   A matrix where the abundances for an endmember are

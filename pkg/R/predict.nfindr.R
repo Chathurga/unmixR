@@ -5,7 +5,9 @@
 ##' 
 ##' @param object The N-FINDR structure returned by the general
 ##'   \code{\link{nfindr}} interface
-##' @param newdata 
+##' @param newdata If the data stored in the object is not the data that
+##'   should be checked for abundances then this parameter allows for passing
+##'   in new data
 ##' @return A matrix where the abundances for an endmember are returned
 ##'   column-wise. Each value is in the range \code{0 - 1}
 ##' @rdname predict.nfindr
