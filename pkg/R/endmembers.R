@@ -1,3 +1,3 @@
-endmembers <- function(model) {
-  model$data[model$indices,]
+endmembers <- function(model, newdata=model$data) {
+  newdata[model$indices, ]
 }
