@@ -28,11 +28,12 @@
 ##' 
 ##' @return A structure which contains:
 ##'   \itemize{
-##'     \item \strong{data}: the original data (or NULL if drop is set to
-##'                          \code{True})
+##'     \item \strong{data}: the original data or reduced data if drop is
+##'                          set to \code{True}
 ##'     \item \strong{indices}: the indices of the spectra which increased
 ##'                             the simplex volume the most. These are the
-##'                             indices of the endmembers
+##'                             indices of the endmembers. If drop is set to
+##'                             \code{True} then indices will be 1 to p
 ##'   }
 
 nfindr <- function(data, p, method, indices, ..., drop) {
