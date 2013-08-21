@@ -2,11 +2,14 @@
 \alias{predict.nfindr}
 \title{Predict Endmember Abundances}
 \usage{
-  \method{predict}{nfindr} (object, ...)
+  \method{predict}{nfindr} (object, newdata = object$data,
+    ...)
 }
 \arguments{
   \item{object}{The N-FINDR structure returned by the
   general \code{\link{nfindr}} interface}
+
+  \item{newdata}{}
 }
 \value{
   A matrix where the abundances for an endmember are
@@ -14,7 +17,7 @@
   - 1}
 }
 \description{
-  Predicts the abundance precentages of each endmember at
+  Predicts the abundance percentages of each endmember at
   all sample points using the Non-Negative Least Squares
   method
 }

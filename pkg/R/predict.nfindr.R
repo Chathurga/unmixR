@@ -1,6 +1,6 @@
 ##' Predict Endmember Abundances
 ##' 
-##' Predicts the abundance precentages of each endmember at all sample points
+##' Predicts the abundance percentages of each endmember at all sample points
 ##' using the Non-Negative Least Squares method
 ##' 
 ##' @param object The N-FINDR structure returned by the general
