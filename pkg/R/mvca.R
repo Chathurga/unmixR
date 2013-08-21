@@ -8,7 +8,7 @@
 
 mvca <- function(data, p) {
   data <- as.matrix(data)
-  Y <- t(svd(data)$u[,1:p])
+  Y <- t(prcomp(data)$x[,1:p])
   Yint <- round2int(Y)
   
   E <- matrix(0, nrow=p, ncol=p+1)
@@ -25,13 +25,13 @@ mvca <- function(data, p) {
       for (j in 3:p) {
         # E[,i] and U[,j-1] are the same on 3rd iter, projection produces
         # no change, thus U[,i] - proj_e_u = 0
-        proj_e_u <- proj(E[,i], U[,j-1])
+        proj_e_u <- .proj(E[,i], U[,j-1])
         U[,i] <- U[,i] - proj_e_u
       }
     }
     
     # error for p >= 3 on iter 3 due to U[,i] being 0 so projection fails
-    proj_w_u <- proj(w, U[,i])
+    proj_w_u <- .proj(w, U[,i])
     proj_acc <- proj_acc + proj_w_u
     f <- as.vector(w - proj_acc)
     
@@ -52,6 +52,6 @@ mvca <- function(data, p) {
 
 round2int <- function(x) x
 
-proj <- function(x, y) {
+.proj <- function(x, y) {
   as.vector((crossprod(x, y) / crossprod(y)) %*% y)
 }
