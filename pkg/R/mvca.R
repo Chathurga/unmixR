@@ -9,7 +9,6 @@
 mvca <- function(data, p) {
   data <- as.matrix(data)
   Y <- t(prcomp(data)$x[,1:p])
-  Yint <- round2int(Y)
   
   E <- matrix(0, nrow=p, ncol=p+1)
   E[p,1] <- 1
@@ -39,7 +38,7 @@ mvca <- function(data, p) {
       proj_acc <- array(0, p)
     }
     
-    v <- crossprod(round2int(f), Yint)
+    v <- crossprod(f, Y)
     
     index <- which.max(v) # always appears to produce the same index
     indices[i] <- index
@@ -49,8 +48,6 @@ mvca <- function(data, p) {
   
   indices
 }
-
-round2int <- function(x) x
 
 .proj <- function(x, y) {
   as.vector((crossprod(x, y) / crossprod(y)) %*% y)
