@@ -1,8 +1,8 @@
-\name{mvca}
-\alias{mvca}
+\name{vcaMod}
+\alias{vcaMod}
 \title{Modified Vertex Component Analysis}
 \usage{
-  mvca(data, p)
+  vcaMod(data, p)
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a

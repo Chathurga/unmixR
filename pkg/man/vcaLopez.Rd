@@ -1,8 +1,8 @@
-\name{lvca}
-\alias{lvca}
+\name{vcaLopez}
+\alias{vcaLopez}
 \title{Lopez VCA}
 \usage{
-  lvca(data, p)
+  vcaLopez(data, p)
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a

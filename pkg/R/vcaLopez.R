@@ -18,7 +18,7 @@
 ##' Geoscience & Remote Sensing Letters, IEEE, vol.9 no.3 pp.502,506, May 2012
 ##' doi: 10.1109/LGRS.2011.2172771
 
-lvca <- function(data, p) {
+vcaLopez <- function(data, p) {
   data <- as.matrix(data)
   Y <- t(prcomp(data)$x[,1:p])
   

@@ -1,8 +1,8 @@
-\name{vca}
-\alias{vca}
+\name{vca05}
+\alias{vca05}
 \title{Vertex Component Analysis unmixing algorithm}
 \usage{
-  vca(data, p)
+  vca05(data, p)
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a

@@ -28,5 +28,6 @@ Collate:
     'endmembers.R'
     'simplex.R'
     'unittests.R'
-    'vca.R'
-    'mvca.R'
+    'vca05.R'
+    'vcaLopez.R'
+    'vcaMod.R'
