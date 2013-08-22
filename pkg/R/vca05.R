@@ -13,7 +13,7 @@
 ##'   Remote Sensing, vol.43, no.4, pp.898,910, April 2005;
 ##'   doi: 10.1109/TGRS.2005.844293
 
-vca <- function(data, p) {
+vca05 <- function(data, p) {
   # get the matrix representation of the input (if it's some other class)
   data <- t(as.matrix(data))
   
