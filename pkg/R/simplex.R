@@ -10,6 +10,8 @@
 ##'   Defines the size of the simplex (will be p x p)
 ##' @param indices Locations of the rows in the dataset to use in the simplex
 ##' @return The simplex, a p x p matrix whose first row contains only 1s
+##' 
+##' @rdname simplex
 
 .simplex <- function(data, p, indices) {
   rbind(rep(1, p), t(data[indices,]))
