@@ -1,5 +1,13 @@
 ##' Modified Vertex Component Analysis
 ##' 
+##' Modified VCA algorithm that aims to reduced the algorithmic complexity of
+##' the original.
+##' 
+##' @param data Data to unmix. It will be converted to a matrix using
+##'   as.matrix. The matrix should contain a spectrum per row.
+##' @param p Number of endmembers
+##' @return Endmember indices
+##' 
 ##' @references Lopez, S.; Horstrand, P.; Callico, G.M.; Lopez, J.F.;
 ##' Sarmiento, R., "A Low-Computational-Complexity Algorithm for
 ##' Hyperspectral Endmember Extraction: Modified Vertex Component Analysis,"
