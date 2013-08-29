@@ -10,17 +10,19 @@
 estSNR <- function(data, p) {
   E <- function(M, n) sum(c(M)^2 / n) # expectation operator
   
-  nsamples <- ncol(data)
+  L <- nrow(data)
+  N <- ncol(data)
+  
   rowMean <- apply(data, 1, mean) # get the mean of each row
   # repeat the column of row means so that it matches the size of the data
-  repMean <- repvec.col(rowMean, nsamples)
+  repMean <- repvec.col(rowMean, N)
   zMean <- data - repMean # zero mean the data
-  Ud <- svd(tcrossprod(zMean) / nsamples, nv=p)$u[,1:p]
+  Ud <- svd(tcrossprod(zMean) / N, nv=p)$u[,1:p]
   zProj <- crossprod(Ud, zMean) # project the zero mean data
   
-  pr <- E(data, nsamples)
-  prp <- E(crossprod(Ud, zMean), nsamples) + crossprod(rowMean)
-  SNR <- 10 * log10((prp - (p / nspectra) * pr) / (pr - prp))
+  pr <- E(data, N)
+  prp <- E(crossprod(Ud, zMean), N) + crossprod(rowMean)
+  SNR <- 10 * log10((prp - (p / L) * pr) / (pr - prp))
   
   SNR
 }
