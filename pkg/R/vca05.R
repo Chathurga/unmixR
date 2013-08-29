@@ -14,8 +14,7 @@
 ##'   doi: 10.1109/TGRS.2005.844293
 
 vca05 <- function(data, p) {
-  # get the matrix representation of the input (if it's some other class)
-  data <- t(as.matrix(data))
+  data <- t(data)
   
   # BH: I think the language here is sort of reversed: an entire spectrum
   # is a sample in the usual lingo.  In my mind nspectra is the no. of 
@@ -26,7 +25,9 @@ vca05 <- function(data, p) {
   nspectra <- nrow(data)
   nsamples <- ncol(data)
   
+  SNR <- estSNR(data, p)
   SNRth <- 15 + 10 * log10(p)
+  
   # if the estimated SNR is over a certain threshold ...
   if (SNR > SNRth) {
     d <- p

@@ -7,7 +7,7 @@
 ##'   Remote Sensing, vol.43, no.4, pp.898,910, April 2005;
 ##'   doi: 10.1109/TGRS.2005.844293
 
-estSNR <- function(data) {
+estSNR <- function(data, p) {
   E <- function(M, n) sum(c(M)^2 / n) # expectation operator
   
   nsamples <- ncol(data)
