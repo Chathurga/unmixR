@@ -37,8 +37,8 @@ vca05 <- function(data, p) {
     u <- apply(x, 1, mean)
     dataProj <- Ud %*% x[1:d,] # project the input matrix
     
-    repu <- repvec.col(u, nsamples)
-    y <- x / repvec.row(apply(t(x * repu), 1, sum), d)
+    repu <- .repvec.col(u, nsamples)
+    y <- x / .repvec.row(apply(t(x * repu), 1, sum), d)
   } else {
     d <- p - 1
     
@@ -62,13 +62,8 @@ vca05 <- function(data, p) {
     A[,i] <- y[, indices[i]]
   }
   
-  endmembers <- dataProj[, indices]
-  
-  structure(list(
-    endmembers = t(endmembers),
-    indices = indices
-  ), class = "vca")
+  indices
 }
 
-repvec.col <- function(v, n) as.matrix(v)[, rep(1, n)]
-repvec.row <- function(v, n) t(as.matrix(v))[rep(1, n), ]
+.repvec.col <- function(v, n) as.matrix(v)[, rep(1, n)]
+.repvec.row <- function(v, n) t(as.matrix(v))[rep(1, n), ]
