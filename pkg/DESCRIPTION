@@ -33,4 +33,5 @@ Collate:
     'endmembers.R'
     'simplex.R'
     'unittests.R'
-    'testdata.R'
+    'repvec.row.R'
+    'repvec.col.R'

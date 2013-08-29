@@ -1,0 +1,20 @@
+\name{.repvec.col}
+\alias{.repvec.col}
+\title{Repeat a Vector Column-Wise}
+\usage{
+  .repvec.col(v, n)
+}
+\arguments{
+  \item{v}{The vector that should be repeated}
+
+  \item{n}{The number of columns in the resulting matrix}
+}
+\value{
+  A matrix with \code{n} columns where each column is
+  \code{v}
+}
+\description{
+  Takes in a vector and repeats it column-wise to make a
+  matrix with \code{n} columns
+}
+
