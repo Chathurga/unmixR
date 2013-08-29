@@ -2,7 +2,7 @@
 \alias{nfindrBrute}
 \title{Brute Force N-FINDR}
 \usage{
-  nfindrBrute(data, p)
+  nfindrBrute(data, p, ...)
 }
 \arguments{
   \item{data}{Data matrix to unmix}
