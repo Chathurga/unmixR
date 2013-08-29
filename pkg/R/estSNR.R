@@ -15,7 +15,7 @@ estSNR <- function(data, p) {
   
   rowMean <- apply(data, 1, mean) # get the mean of each row
   # repeat the column of row means so that it matches the size of the data
-  repMean <- repvec.col(rowMean, N)
+  repMean <- .repvec.col(rowMean, N)
   zMean <- data - repMean # zero mean the data
   Ud <- svd(tcrossprod(zMean) / N, nv=p)$u[,1:p]
   zProj <- crossprod(Ud, zMean) # project the zero mean data
