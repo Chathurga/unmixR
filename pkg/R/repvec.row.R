@@ -10,3 +10,20 @@
 ##' @rdname repvec.row
 
 .repvec.row <- function(v, n) t(as.matrix(v))[rep(1, n), ]
+
+.test(.repvec.row) <- function() {
+  # test: verify functionality
+  
+  v <- c(1, 2, 3)
+  n <- 3
+  
+  expected <- matrix(c(
+    c(1,2,3),
+    c(1,2,3),
+    c(1,2,3)
+  ), ncol=3, byrow=TRUE)
+  
+  result <- .repvec.row(v, n)
+  
+  checkEquals(result, expected)
+}
