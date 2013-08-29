@@ -26,30 +26,6 @@ vca05 <- function(data, p) {
   nspectra <- nrow(data)
   nsamples <- ncol(data)
   
-  # BH: estimating SNR is more complex than it seems: you need to find
-  # 'peaks' and 'noise' separately, then ratio them.  The problem
-  # comes in identifying peaks, which by definition exceed the noise by
-  # some threshold.  Determining the threshold is tricky.
-  # Package ChemometricsWithR has some peak finding functions
-  # and I have adapted a few of them - let me know if they are of interest.
-  
-  # estimate the signal to noise ratio
-  rowMean <- apply(data, 1, mean) # get the mean of each row
-  # repeat the column of row means so that it matches the size of the data
-  repMean <- repvec.col(rowMean, nsamples)
-  zMean <- data - repMean # zero mean the data
-  Ud <- svd(tcrossprod(zMean) / nsamples, nv=p)$u[,1:p]
-  zProj <- crossprod(Ud, zMean) # project the zero mean data
-  
-  E <- function(M, n) sum(c(M)^2 / n) # expectation operator
-  pr <- E(data, nsamples)
-  prp <- E(crossprod(Ud, zMean), nsamples) + crossprod(rowMean)
-  SNR <- 10 * log10((prp - (p / nspectra) * pr) / (pr - prp))
-  
-  # signal to noise threshold # BH: this is the initial, crude SNR and
-  # I would suggest computing it earlier to make it clear.
-  # This value will certainly be replaced on the first iteration.
-  
   SNRth <- 15 + 10 * log10(p)
   # if the estimated SNR is over a certain threshold ...
   if (SNR > SNRth) {
