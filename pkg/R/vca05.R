@@ -13,31 +13,22 @@
 ##'   Remote Sensing, vol.43, no.4, pp.898,910, April 2005;
 ##'   doi: 10.1109/TGRS.2005.844293
 
-vca05 <- function(data, p) {
-  data <- t(data)
+vca05 <- function(data, p, SNR=estSNR(data, p)) {
+  data <- t(as.matrix(data))
+  N <- ncol(data)
   
-  # BH: I think the language here is sort of reversed: an entire spectrum
-  # is a sample in the usual lingo.  In my mind nspectra is the no. of 
-  # samples. I'd prefer to call ncol(data) nfreq for no of frequencies
-  # or if you want to stick close to the nomenclature in the VCA paper
-  # I think it would be L (if you call it something else, identify it as
-  # L in the paper)
-  nspectra <- nrow(data)
-  nsamples <- ncol(data)
-  
-  SNR <- estSNR(data, p)
   SNRth <- 15 + 10 * log10(p)
   
   # if the estimated SNR is over a certain threshold ...
   if (SNR > SNRth) {
     d <- p
-    Ud <- svd(tcrossprod(data) / nsamples)$u[,1:d]
+    Ud <- svd(tcrossprod(data) / N)$u[,1:d]
     
     x <- crossprod(Ud, data)
     u <- apply(x, 1, mean)
     dataProj <- Ud %*% x[1:d,] # project the input matrix
     
-    repu <- .repvec.col(u, nsamples)
+    repu <- .repvec.col(u, N)
     y <- x / .repvec.row(apply(t(x * repu), 1, sum), d)
   } else {
     d <- p - 1
