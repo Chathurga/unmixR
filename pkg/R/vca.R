@@ -26,10 +26,22 @@ vca.default <- function(data, p, method="Mod", seed=NULL) {
   
   vcaFunc <- get(paste("vca", method, sep=""))
   
-  indices <- vcaFunc(data, p)
+  indices <- sort(vcaFunc(data, p))
   
   structure(list(
     data = data,
     indices = indices
   ), class = "vca")
+}
+
+.test(nfindr) <- function() {
+  seed <- 10 # fix the seed
+  
+  # test: vca05 and vcaLopez output the correct answers
+  
+  ans1 <- vca(laser, 2, method="05", seed=seed)
+  checkEquals(ans1$indices, c(4, 84))
+  
+  ans2 <- vca(laser, 2, method="Lopez", seed=seed)
+  checkEquals(ans2$indices, c(4, 81))
 }
