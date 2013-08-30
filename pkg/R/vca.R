@@ -65,6 +65,15 @@ vca.default <- function(data, p, method="Mod", seed=NULL, ...) {
   data <- laser
   seed <- 10 # fix the seed
   
+  # test: vca produces error for invalid values of p
+  
+  checkException(nfindr(data, p="---"))
+  checkException(nfindr(data, p=0))
+  
+  # test: vca produces error for invalid method
+  
+  checkException(nfindr(data, p, method="invalid"))
+  
   # test: vca05 and vcaLopez output the correct answers
   
   ans05 <- vca(data, 2, method="05", seed=seed)
