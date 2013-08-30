@@ -3,7 +3,7 @@
 \title{General interface to Vertex Component Analysis spectral unmixing
 implementations}
 \usage{
-  vca(data, p, method, seed)
+  vca(data, p, method, seed, ...)
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a
@@ -20,6 +20,9 @@ implementations}
   \item{seed}{vca05 and vcaLopez both need to generate a
   random vector. Set the random number generator seed with
   this}
+
+  \item{...}{Extra parameters that will get passed into
+  selected method, see selected method for options}
 }
 \value{
   A structure which contains: \itemize{ \item

@@ -16,6 +16,8 @@
 ##'   Default: Mod as it is the most efficient
 ##' @param seed vca05 and vcaLopez both need to generate a random vector. Set
 ##'   the random number generator seed with this
+##' @param ... Extra parameters that will get passed into selected method, see
+##'   selected method for options
 ##' 
 ##' @return A structure which contains:
 ##'   \itemize{
@@ -23,11 +25,11 @@
 ##'     \item \strong{indices}: the indices of the calculated endmembers
 ##'   }
 
-vca <- function(data, p, method, seed) {
+vca <- function(data, p, method, seed, ...) {
   UseMethod("vca")
 }
 
-vca.default <- function(data, p, method="Mod", seed=NULL) {
+vca.default <- function(data, p, method="Mod", seed=NULL, ...) {
   methods <- c("05", "Lopez", "Mod")
   
   # check for p being with the valid range, >= 2
@@ -51,7 +53,7 @@ vca.default <- function(data, p, method="Mod", seed=NULL) {
   
   vcaFunc <- get(paste("vca", method, sep=""))
   
-  indices <- sort(vcaFunc(data, p))
+  indices <- sort(vcaFunc(data, p, ...))
   
   structure(list(
     data = data,
