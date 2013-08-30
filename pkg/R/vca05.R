@@ -6,6 +6,8 @@
 ##' @param data Data to unmix. It will be converted to a matrix using
 ##'   as.matrix. The matrix should contain a spectrum per row.
 ##' @param p Number of endmembers
+##' @param SNR The Signal-to-Noise ratio of the data. By default it will be
+##'   estimated using \code{\link{estSNR}}
 ##' @return Endmember indices
 ##' 
 ##' @references Nascimento, J.M.P.; Bioucas Dias, J.M., "Vertex component

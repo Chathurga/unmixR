@@ -2,7 +2,7 @@
 \alias{vca05}
 \title{Vertex Component Analysis unmixing algorithm}
 \usage{
-  vca05(data, p)
+  vca05(data, p, SNR = estSNR(data, p))
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a
@@ -10,6 +10,9 @@
   spectrum per row.}
 
   \item{p}{Number of endmembers}
+
+  \item{SNR}{The Signal-to-Noise ratio of the data. By
+  default it will be estimated using \code{\link{estSNR}}}
 }
 \value{
   Endmember indices
