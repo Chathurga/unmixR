@@ -61,7 +61,7 @@ vca.default <- function(data, p, method="Mod", seed=NULL, ...) {
   ), class = "vca")
 }
 
-.test(nfindr) <- function() {
+.test(vca) <- function() {
   seed <- 10 # fix the seed
   
   # test: vca05 and vcaLopez output the correct answers
