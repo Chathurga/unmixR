@@ -17,8 +17,13 @@
   \item{method}{The N-FINDR algorithm to use. Options:
   \itemize{ \item 99 (\code{\link{nfindr99}}) \item LDU
   (\code{\link{nfindrLDU}}) \item SeqLDU
-  (\code{\link{nfindrSeqLDU}}) } Default: LDU as it
+  (\code{\link{nfindrSeqLDU}}) \item Brute
+  (\code{\link{nfindrBrute}}) } Default: LDU as it
   generally performs the best}
+
+  \item{indices}{Locations of the rows in the dataset that
+  will be used to form the initial simplex. Default:
+  Randomly selected indices}
 
   \item{...}{Extra parameters that will get passed into
   selected method, see selected method for options}
@@ -30,10 +35,11 @@
 }
 \value{
   A structure which contains: \itemize{ \item
-  \strong{data}: the original data (or NULL if drop is set
-  to \code{True}) \item \strong{indices}: the indices of
-  the spectra which increased the simplex volume the most.
-  These are the indices of the endmembers }
+  \strong{data}: the original data or reduced data if drop
+  is set to \code{True} \item \strong{indices}: the indices
+  of the spectra which increased the simplex volume the
+  most. These are the indices of the endmembers. If drop is
+  set to \code{True} then indices will be 1 to p }
 }
 \description{
   All the N-FINDR techniques are based on the fact that, in

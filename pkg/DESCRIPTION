@@ -10,6 +10,7 @@ Description: Implements the N-FINDR and Vertex Component Analysis algorithms
     from a set of measured spectra.
 License: GPL (>= 3)
 Depends:
+    MASS,
     nnls
 Suggests:
     hyperSpec,
@@ -18,16 +19,19 @@ Suggests:
 VignetteBuilder: knitr
 Collate:
     'unmixR-package.R'
-    'endmembers.R'
-    'hfc.R'
-    'hfc2.R'
-    'hfcSAMPLE.R'
-    'hfcVAR.R'
     'nfindr.R'
     'nfindr99.R'
     'nfindrLDU.R'
     'nfindrSeqLDU.R'
-    'predict.nfindr.R'
-    'unittests.R'
+    'nfindrBrute.R'
     'vca.R'
-    'mvca.R'
+    'vca05.R'
+    'vcaLopez.R'
+    'vcaMod.R'
+    'estSNR.R'
+    'predict.nfindr.R'
+    'endmembers.R'
+    'simplex.R'
+    'unittests.R'
+    'repvec.row.R'
+    'repvec.col.R'

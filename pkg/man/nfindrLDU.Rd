@@ -2,14 +2,12 @@
 \alias{nfindrLDU}
 \title{LDU N-FINDR: 2013 Improved N-FINDR algorithm based on LU decompositions}
 \usage{
-  nfindrLDU(data, p, simplex, indices, ...)
+  nfindrLDU(data, p, indices, ...)
 }
 \arguments{
   \item{data}{Data matrix to unmix}
 
   \item{p}{Number of endmembers}
-
-  \item{simplex}{The initial simplex estimation}
 
   \item{indices}{Indices used in the simplex estimation}
 }

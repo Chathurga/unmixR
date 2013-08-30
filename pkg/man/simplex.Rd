@@ -1,0 +1,28 @@
+\name{.simplex}
+\alias{.simplex}
+\title{Simplex Generator}
+\usage{
+  .simplex(data, p, indices)
+}
+\arguments{
+  \item{data}{Matrix whose rows will be included in the
+  simplex. This matrix will have been reduced using using
+  PCA or some other process so that it has p columns}
+
+  \item{p}{Number of endmembers that should be found using
+  the simplex.  Defines the size of the simplex (will be p
+  x p)}
+
+  \item{indices}{Locations of the rows in the dataset to
+  use in the simplex}
+}
+\value{
+  The simplex, a p x p matrix whose first row contains only
+  1s
+}
+\description{
+  Simple helper function for generating initial simplex for
+  N-FINDR methods using indices that point to rows in a
+  data matrix
+}
+

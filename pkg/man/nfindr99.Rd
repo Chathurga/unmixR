@@ -2,14 +2,12 @@
 \alias{nfindr99}
 \title{Michael E. Winter's 1999 N-FINDR unmixing algorithm}
 \usage{
-  nfindr99(data, p, simplex, indices, iters = 3 * p)
+  nfindr99(data, p, indices, iters = 3 * p)
 }
 \arguments{
   \item{data}{Data matrix to unmix}
 
   \item{p}{Number of endmembers}
-
-  \item{simplex}{The initial simplex estimation}
 
   \item{indices}{Indices used in the simplex estimation}
 
