@@ -66,9 +66,15 @@ vca.default <- function(data, p, method="Mod", seed=NULL, ...) {
   
   # test: vca05 and vcaLopez output the correct answers
   
-  ans1 <- vca(laser, 2, method="05", seed=seed)
-  checkEquals(ans1$indices, c(4, 84))
+  ans05 <- vca(laser, 2, method="05", seed=seed)
+  checkEquals(ans05$indices, c(4, 84))
   
-  ans2 <- vca(laser, 2, method="Lopez", seed=seed)
-  checkEquals(ans2$indices, c(4, 81))
+  ansLopez <- vca(laser, 2, method="Lopez", seed=seed)
+  checkEquals(ansLopez$indices, c(4, 81))
+  
+  # test vcaLopez and vcaMod should output the same answer
+  
+  ansMod <- vca(laser, 2, method="Mod", seed=seed)
+  
+  checkEquals(ansLopez$indices, ansMod$indices)
 }
