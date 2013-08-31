@@ -1,0 +1,27 @@
+\name{estSNR}
+\alias{estSNR}
+\title{Estimates Signal to Noise Ratio}
+\usage{
+  estSNR(data, p)
+}
+\arguments{
+  \item{data}{The hyperspectral image whose signal to noise
+  ratio needs to be estimated}
+
+  \item{p}{The number of endmembers, used for data
+  reduction}
+}
+\value{
+  The estimates signal to noise ratio in decibels
+}
+\description{
+  Estimate the signal to noise ratio of a hyperspectral
+  image
+}
+\references{
+  Nascimento, J.M.P.; Bioucas Dias, J.M., "Vertex component
+  analysis: a fast algorithm to unmix hyperspectral data,"
+  Geoscience and Remote Sensing, vol.43, no.4, pp.898,910,
+  April 2005; doi: 10.1109/TGRS.2005.844293
+}
+
