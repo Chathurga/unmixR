@@ -8,6 +8,8 @@
 ##' @param newdata If the data stored in the object is not the data that
 ##'   should be checked for abundances then this parameter allows for passing
 ##'   in new data
+##' @param ... Allow for extra parameters to match the signature of the base
+##'   predict function
 ##' @return A matrix where the abundances for an endmember are returned
 ##'   column-wise. Each value is in the range \code{0 - 1}
 ##' @rdname predict.nfindr

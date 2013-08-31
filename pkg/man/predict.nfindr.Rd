@@ -12,6 +12,9 @@
   \item{newdata}{If the data stored in the object is not
   the data that should be checked for abundances then this
   parameter allows for passing in new data}
+
+  \item{...}{Allow for extra parameters to match the
+  signature of the base predict function}
 }
 \value{
   A matrix where the abundances for an endmember are
