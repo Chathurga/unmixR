@@ -57,6 +57,3 @@ vca05 <- function(data, p, SNR=estSNR(data, p)) {
   
   indices
 }
-
-.repvec.col <- function(v, n) as.matrix(v)[, rep(1, n)]
-.repvec.row <- function(v, n) t(as.matrix(v))[rep(1, n), ]
