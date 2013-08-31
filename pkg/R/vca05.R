@@ -35,6 +35,13 @@ vca05 <- function(data, p, SNR=estSNR(data, p)) {
   } else {
     d <- p - 1
     
+    rowMean <- apply(data, 1, mean) # get the mean of each row
+    # repeat the column of row means so that it matches the size of the data
+    repMean <- .repvec.col(rowMean, N)
+    zMean <- data - repMean # zero mean the data
+    Ud <- svd(tcrossprod(zMean) / N, nv=p)$u[,1:p]
+    zProj <- crossprod(Ud, zMean) # project the zero mean data
+    
     x <- zProj[1:d, ]
     dataProj <- Ud[, 1:d] %*% x + repMean
     c <- max(sum(x^2))^0.5
