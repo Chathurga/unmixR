@@ -3,7 +3,7 @@
 ##' The original VCA algorithm (\code{\link{vca}}) contains auxiliary
 ##' operations (signal to noise estimation, etc.) which could be omitted while
 ##' still maintaining a fully functional algorithm. In paper that describes
-##' the Modified VCA algorithm (\code{\link{mvca}}) the author provides a
+##' the Modified VCA algorithm (\code{\link{vcaMod}}) the author provides a
 ##' description of the original VCA with only the essential components
 ##' included. This is an implementation of that algorithm
 ##' 
