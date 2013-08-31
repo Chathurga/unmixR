@@ -9,6 +9,8 @@
 ##' @param data Data matrix to unmix
 ##' @param p Number of endmembers
 ##' @param indices Indices used in the simplex estimation
+##' @param ... Extra unused parameters that get passed in from
+##'   \code{\link{nfindr}}
 ##' @return The indices that indicate the position of the endmembers in the
 ##'   original dataset
 ##' 

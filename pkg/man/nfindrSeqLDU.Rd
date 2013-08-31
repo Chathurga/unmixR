@@ -10,6 +10,9 @@
   \item{p}{Number of endmembers}
 
   \item{indices}{Indices used in the simplex estimation}
+
+  \item{...}{Extra unused parameters that get passed in
+  from \code{\link{nfindr}}}
 }
 \value{
   The indices that indicate the position of the endmembers

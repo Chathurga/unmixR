@@ -8,6 +8,9 @@
   \item{data}{Data matrix to unmix}
 
   \item{p}{Number of endmembers}
+
+  \item{...}{Extra unused parameters that get passed in
+  from \code{\link{nfindr}}}
 }
 \value{
   The indices that indicate the position of the endmembers
