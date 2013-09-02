@@ -62,5 +62,8 @@ vca05 <- function(data, p, SNR=estSNR(data, p)) {
     A[,i] <- y[, indices[i]]
   }
   
-  indices
+  list(
+    data = dataProj,
+    indices = indices
+  )
 }
