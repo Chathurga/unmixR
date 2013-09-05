@@ -46,6 +46,10 @@ plot(data, xlim = c (-1.5, 1.5), ylim = c (-1.5, 1.5), asp = 1,
 ```{r svd}
 rot <- svd (center (data [i.simplexbase,]))$v
 prot <- data %*% rot
+prot [,2] - data %*% rot [,2, drop = FALSE]
+
+
+
 ```
 ```{r plotrot, fig.width=7, fig.height=7}
 <<plotdata>>
