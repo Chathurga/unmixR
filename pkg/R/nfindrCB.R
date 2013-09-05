@@ -1,24 +1,24 @@
-nfindrCB <- function(data, p, ...) {
-  i.simplex <- sample(nrow(data), p)
-  old.simplex <- i.simplex
+nfindrCB <- function(data, p, data, indices, ..., iters = 3) {
+  
+  no.change <- 0 # number of points that were checked but did not change
   
   # combine the two loops into one
-  for (iter in 1 : (3 * p)) {
+  for (iter in 1 : (iters * p)) {
     i.change <- 1 + iter %% p
-    i.simplex[i.change] <- .maxcorner(data, i.simplex[-i.change], p)
     
-    # all points optimized at least once
-    # from now on if the point didn't change then we're at the solution
-    if (iter > p) {
-      if (all(i.simplex == old.simplex)) {
-        break
-      } else {
-        old.simplex <- i.simplex
-      }
+    i.newcorner <- .maxcorner(data, indices[-i.change], p)
+    
+    if (i.newcorner == indices [i.change])
+      no.change <- no.change + 1
+    else
+      indices [i.change] <- i.newcorner
+    
+    # after p points did not change we know that we are converged
+    if (nochange > p) break
     }
   }
   
-  i.simplex
+  indices
 }
 
 .center <- function (x) {
@@ -32,8 +32,8 @@ nfindrCB <- function(data, p, ...) {
 
 .maxcorner <- function (points, i.simplexbase, p) {
   rot <- svd(.center(points[i.simplexbase,]))$v
-  points <- points %*% rot
-  z.base <- points[i.simplexbase[1], p - 1]
+  h <- points %*% rot [, p - 1] # we don't need the other dimensions
+  h.base <- h [i.simplexbase[1]]
   
-  which.max(abs(points[, p - 1] - z.base))
+  which.max(abs(h - h.base))
 }
