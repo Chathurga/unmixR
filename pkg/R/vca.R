@@ -52,14 +52,14 @@ vca.default <- function(data, p, method="Mod", seed=NULL, ...) {
   }
   
   vcaFunc <- get(paste("vca", method, sep=""))
-  val <- sort(vcaFunc(data, p, ...))
+  val <- vcaFunc(data, p, ...)
   
   if (method == "05") {
     struct <- val
   } else {
     struct <- list(
       data = data,
-      indices = val
+      indices = sort(val)
     )
   }
   
