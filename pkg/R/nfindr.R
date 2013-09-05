@@ -43,7 +43,7 @@ nfindr <- function(data, p, method, indices, ..., drop) {
 nfindr.default <- function(data, p,
                            method="LDU", indices=sample(nrow(data), p), ...,
                            drop=FALSE) {
-  methods <- c("99", "LDU", "SeqLDU", "Brute") # valid methods
+  methods <- c("99", "LDU", "SeqLDU", "CB", "Brute") # valid methods
   
   # check for p being with the valid range, >= 2
   if (!is.numeric(p) || p < 2) {
@@ -101,7 +101,7 @@ nfindr.default <- function(data, p,
   
   # test: all N-FINDR methods produce the same output
   
-  methods <- c("99", "LDU", "SeqLDU", "Brute")
+  methods <- c("99", "LDU", "SeqLDU", "CB", "Brute")
   
   outputs <- sapply(1:4, function(i) {
     nfindr(data, p, methods[i])$indices
