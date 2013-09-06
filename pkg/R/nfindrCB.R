@@ -1,4 +1,4 @@
-nfindrCB <- function(data, p, data, indices, ..., iters = 3) {
+nfindrCB <- function(data, p, indices, ..., iters = 3) {
   
   no.change <- 0 # number of points that were checked but did not change
   
@@ -14,8 +14,7 @@ nfindrCB <- function(data, p, data, indices, ..., iters = 3) {
       indices [i.change] <- i.newcorner
     
     # after p points did not change we know that we are converged
-    if (nochange > p) break
-    }
+    if (no.change > p) break
   }
   
   indices
