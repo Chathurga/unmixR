@@ -1,9 +1,13 @@
 \name{vca}
 \alias{vca}
+\alias{vca.default}
 \title{General interface to Vertex Component Analysis spectral unmixing
 implementations}
 \usage{
   vca(data, p, method, seed, ...)
+
+  \method{vca}{default} (data, p, method = "Mod",
+    seed = NULL, ...)
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a

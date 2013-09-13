@@ -24,11 +24,17 @@
 ##'     \item \strong{data}: the original data
 ##'     \item \strong{indices}: the indices of the calculated endmembers
 ##'   }
+##' 
+##' @rdname vca
+##' @export vca
 
 vca <- function(data, p, method, seed, ...) {
   UseMethod("vca")
 }
 
+##' @rdname vca
+##' @method vca default
+##' @S3method vca default
 vca.default <- function(data, p, method="Mod", seed=NULL, ...) {
   methods <- c("05", "Lopez", "Mod")
   
