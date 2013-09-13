@@ -35,11 +35,17 @@
 ##'                             indices of the endmembers. If drop is set to
 ##'                             \code{True} then indices will be 1 to p
 ##'   }
+##' 
+##' @rdname nfindr
+##' @export nfindr
 
 nfindr <- function(data, p, method, indices, ..., drop) {
   UseMethod("nfindr")
 }
 
+##' @rdname nfindr
+##' @method nfindr default
+##' @S3method nfindr default
 nfindr.default <- function(data, p,
                            method="LDU", indices=sample(nrow(data), p), ...,
                            drop=FALSE) {
