@@ -4,5 +4,5 @@
 
 vca.formula <- function(formula, frame, p, method="Mod", seed=NULL, ...) {
   data <- model.matrix(formula, frame)
-  vca(formula, frame, p, method, seed, ...)
+  vca(data, p, method, seed, ...)
 }
