@@ -44,7 +44,7 @@ nfindr <- function(...) {
 }
 
 .test(nfindr) <- function() {
-  data <- laser
+  data <- as.matrix(laser)
   p <- 2
   indices <- c(1, 2)
   
@@ -71,4 +71,9 @@ nfindr <- function(...) {
   })
   
   checkTrue(all(outputs[,1] == outputs))
+  
+  # test: check the formula interface
+  
+  output.formula <- nfindr(~ 0 + ., as.data.frame(data), p)$indices
+  checkEquals(output.formula, output)
 }

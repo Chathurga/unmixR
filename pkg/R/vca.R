@@ -58,4 +58,9 @@ vca <- function(...) {
   ansMod <- vca(data, 2, method="Mod", seed=seed)
   
   checkEquals(ansLopez$indices, ansMod$indices)
+  
+  # test: check the formula interface
+  
+  output.formula <- vca(~ 0 + ., as.data.frame(data), p)$indices
+  checkEquals(output.formula, ansMod$indices)
 }
