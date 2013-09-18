@@ -26,9 +26,9 @@
 ##'   }
 ##' 
 ##' @rdname vca
-##' @export vca
+##' @export
 
-vca <- function(data, p, method, seed, ...) {
+vca <- function(...) {
   UseMethod("vca")
 }
 

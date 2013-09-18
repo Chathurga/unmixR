@@ -37,9 +37,9 @@
 ##'   }
 ##' 
 ##' @rdname nfindr
-##' @export nfindr
+##' @export
 
-nfindr <- function(data, p, method, indices, ..., drop) {
+nfindr <- function(...) {
   UseMethod("nfindr")
 }
 

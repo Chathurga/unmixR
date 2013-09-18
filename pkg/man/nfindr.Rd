@@ -1,12 +1,17 @@
 \name{nfindr}
 \alias{nfindr}
 \alias{nfindr.default}
+\alias{nfindr.formula}
 \title{General interface to N-FINDR spectral unmixing implementations}
 \usage{
-  nfindr(data, p, method, indices, ..., drop)
+  nfindr(...)
 
   \method{nfindr}{default} (data, p, method = "LDU",
     indices = sample(nrow(data), p), ..., drop = FALSE)
+
+  \method{nfindr}{formula} (formula, frame, p,
+    method = "LDU", indices = sample(nrow(data), p), ...,
+    drop = FALSE)
 }
 \arguments{
   \item{data}{Data to unmix. It will be converted to a
@@ -50,5 +55,7 @@
   N spectral dimensions, the N-volume contained by a
   simplex formed of the purest pixels is larger than any
   other volume formed from any other combination of pixels.
+
+  nfindr
 }
 
