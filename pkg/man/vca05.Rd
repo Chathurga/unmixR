@@ -15,7 +15,10 @@
   default it will be estimated using \code{\link{estSNR}}}
 }
 \value{
-  Endmember indices
+  Although the other VCA algorithms return only indices,
+  this function returns the full structure to
+  \link{\code{vca}} as the endmembers should be taken out
+  of a projected dataset which it generates
 }
 \description{
   This algorithm is based on the geometry of convex sets.

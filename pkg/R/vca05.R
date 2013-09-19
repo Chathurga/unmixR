@@ -8,7 +8,10 @@
 ##' @param p Number of endmembers
 ##' @param SNR The Signal-to-Noise ratio of the data. By default it will be
 ##'   estimated using \code{\link{estSNR}}
-##' @return Endmember indices
+##' 
+##' @return Although the other VCA algorithms return only indices, this
+##'   function returns the full structure to \link{\code{vca}} as the
+##'   endmembers should be taken out of a projected dataset which it generates
 ##' 
 ##' @references Nascimento, J.M.P.; Bioucas Dias, J.M., "Vertex component
 ##'   analysis: a fast algorithm to unmix hyperspectral data," Geoscience and
