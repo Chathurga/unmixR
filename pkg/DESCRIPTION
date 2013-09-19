@@ -34,7 +34,7 @@ Collate:
     'vcaLopez.R'
     'vcaMod.R'
     'estSNR.R'
-    'predict.vca.R'
+    'predict.R'
     'endmembers.R'
     'simplex.R'
     'unittests.R'
