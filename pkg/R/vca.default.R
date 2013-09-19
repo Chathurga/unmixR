@@ -1,3 +1,4 @@
+##' @name vca
 ##' @rdname vca
 ##' @method vca default
 ##' @S3method vca default

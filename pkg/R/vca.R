@@ -6,6 +6,8 @@
 ##' 
 ##' @param data Data to unmix. It will be converted to a matrix using
 ##'   as.matrix. The matrix should contain a spectrum per row.
+##' @param formula Formula object
+##' @param frame Data frame containing the hyperspectral data
 ##' @param p Number of endmembers
 ##' @param method The N-FINDR algorithm to use. Options:
 ##'   \itemize{

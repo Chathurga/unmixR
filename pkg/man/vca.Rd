@@ -1,7 +1,5 @@
 \name{vca}
 \alias{vca}
-\alias{vca.default}
-\alias{vca.formula}
 \title{General interface to Vertex Component Analysis spectral unmixing
 implementations}
 \usage{
@@ -17,6 +15,11 @@ implementations}
   \item{data}{Data to unmix. It will be converted to a
   matrix using as.matrix. The matrix should contain a
   spectrum per row.}
+
+  \item{formula}{Formula object}
+
+  \item{frame}{Data frame containing the hyperspectral
+  data}
 
   \item{p}{Number of endmembers}
 

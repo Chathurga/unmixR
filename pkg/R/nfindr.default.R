@@ -1,3 +1,4 @@
+##' @name nfindr
 ##' @rdname nfindr
 ##' @method nfindr default
 ##' @S3method nfindr default

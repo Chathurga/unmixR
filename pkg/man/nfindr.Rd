@@ -1,7 +1,5 @@
 \name{nfindr}
 \alias{nfindr}
-\alias{nfindr.default}
-\alias{nfindr.formula}
 \title{General interface to N-FINDR spectral unmixing implementations}
 \usage{
   nfindr(...)
@@ -20,6 +18,11 @@
   using PCA. If you want to reduce the data using some
   other method then reduce it first and set drop to
   \code{TRUE}}
+
+  \item{formula}{Formula object}
+
+  \item{frame}{Data frame containing the hyperspectral
+  data}
 
   \item{p}{Number of endmembers}
 
@@ -55,7 +58,5 @@
   N spectral dimensions, the N-volume contained by a
   simplex formed of the purest pixels is larger than any
   other volume formed from any other combination of pixels.
-
-  nfindr
 }
 

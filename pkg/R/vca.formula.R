@@ -1,3 +1,4 @@
+##' @name vca
 ##' @rdname vca
 ##' @method vca formula
 ##' @S3method vca formula

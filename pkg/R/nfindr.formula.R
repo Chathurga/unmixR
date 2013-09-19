@@ -1,3 +1,4 @@
+##' @name nfindr
 ##' @rdname nfindr
 ##' @method nfindr formula
 ##' @S3method nfindr formula
