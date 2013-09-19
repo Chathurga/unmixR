@@ -66,7 +66,7 @@ vca05 <- function(data, p, SNR=estSNR(data, p)) {
   }
   
   list(
-    data = dataProj,
+    data = t(dataProj),
     indices = sort(indices)
   )
 }
