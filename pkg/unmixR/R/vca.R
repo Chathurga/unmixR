@@ -58,11 +58,15 @@ vca <- function(...) {
   # test vcaLopez and vcaMod should output the same answer
   
   ansMod <- vca(data, 2, method="Mod", seed=seed)
-  
   checkEquals(ansLopez$indices, ansMod$indices)
   
   # test: check the formula interface
-  
-  output.formula <- vca(~ 0 + ., as.data.frame(data), p)$indices
+  output.formula <- vca(~ 0 + ., as.data.frame(data), p = 2)$indices
   checkEquals(output.formula, ansMod$indices)
+
+  # test: if hyperSpec is available, test on hyperSpec object
+  # tests also the correct application of as.matrix.
+  if (require ("hyperSpec"))
+    checkEquals (vca(~ spc, laser, p = 2)$indices, c (4, 81))
+  
 }
