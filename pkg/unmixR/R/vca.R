@@ -34,39 +34,3 @@ vca <- function(...) {
   UseMethod("vca")
 }
 
-.test(vca) <- function() {
-  data <- laser
-  seed <- 10 # fix the seed
-  
-  # test: vca produces error for invalid values of p
-  
-  checkException(nfindr(data, p="---"))
-  checkException(nfindr(data, p=0))
-  
-  # test: vca produces error for invalid method
-  
-  checkException(nfindr(data, p, method="invalid"))
-  
-  # test: vca05 and vcaLopez output the correct answers
-  
-  ans05 <- vca(data, 2, method="05", seed=seed)
-  checkEquals(ans05$indices, c(4, 84))
-  
-  ansLopez <- vca(data, 2, method="Lopez", seed=seed)
-  checkEquals(ansLopez$indices, c(4, 81))
-  
-  # test vcaLopez and vcaMod should output the same answer
-  
-  ansMod <- vca(data, 2, method="Mod", seed=seed)
-  checkEquals(ansLopez$indices, ansMod$indices)
-  
-  # test: check the formula interface
-  output.formula <- vca(~ 0 + ., as.data.frame(data), p = 2)$indices
-  checkEquals(output.formula, ansMod$indices)
-
-  # test: if hyperSpec is available, test on hyperSpec object
-  # tests also the correct application of as.matrix.
-  if (require ("hyperSpec"))
-    checkEquals (vca(~ spc, laser, p = 2)$indices, c (4, 81))
-  
-}
