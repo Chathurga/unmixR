@@ -38,4 +38,10 @@ unmixR.unittest <- function () {
   invisible(TRUE)
 }
 
-
+##' test data for unit tests
+.C <- expand.grid ( 0 : 3, 0 : 3) 
+.C [, 3] <- 3 - rowSums (.C)
+.C <- as.matrix (.C [.C [, 3] >= 0,])
+.testdata <- data.frame (a = 1 : 10, x = I (.C))
+rm (.C)
+.correct <- c (1, 4, 10)
