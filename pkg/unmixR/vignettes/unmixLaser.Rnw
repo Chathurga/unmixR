@@ -1,0 +1,101 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{hyperSpec's laser data set analysed with spectral unmixing algorithms}
+%\VignetteDepends{hyperSpec}
+\documentclass{article}
+\begin{document}
+<<>>=
+knitr::opts_knit$set (self.contained=FALSE)
+knitr::opts_chunk$set (fig.width=10, fig.height=6)
+
+require ("hyperSpec")
+require ("hyperSpec.matrixStats")
+require ("spec.unmixing")
+@
+
+<<>>=
+matplot (laser$t / 60, laser [[,, c(405.15, 405.29)]], type = "l", lty = 1, main = "univariate", xlab = "t / min")
+@
+
+Numerical rank of matrix:
+<<>>=
+plot (log10 (svd (laser [[]])$d), pch = 20)
+@
+
+We can compare that to the eigenvalues of random-noise data matrices.
+
+
+case 1: bit-noise. 50:50 matrix with zeros and .Machine\$double.eps (smallest number we can distinguish from zero) entries: 
+
+<<>>=
+zero <- sample (0:1, length (laser [[]]), replace = TRUE) * .Machine$double.eps
+dim (zero) <- dim (laser [[]])
+(nnoise <- log10 (svd (zero)$d))
+#points (nnoise, pch = 20, cex = 0.5, col = "red")
+@
+These are here much lower than the eigenvalues of the laser data set.
+
+But we know something about the noise of Raman data. Assuming that the measurement is a Poisson process (we're counting photons),
+the variance of the observed intensities should equal the true intensity. The mean observed intensity should also equal the true intensity, so $\sigma^2 (\hat I) = I = mean (\hat I)$. 
+
+We don't know the true intensity for each wavelength. But in order to get an idea of what is going on, we can use the average intensity, and maybe also minimum and maximum:
+
+<<>>=
+plot (log10 (svd (laser [[]])$d), pch = 20)
+
+sd <- matrix (0, ncol = nwl (laser), nrow = nwl (laser))
+diag (sd) <- colMeans (laser)[[]]
+zero <- rmvnorm (n = nrow (laser), sigma=sd) 
+points (log10 (svd (zero)$d), pch = 20, cex = 0.75, col = "green")
+
+diag (sd) <- colMaxs (laser)[[]]
+zero <- rmvnorm (n = nrow (laser), sigma=sd) 
+points (log10 (svd (zero)$d), pch = 20, cex = 0.5, col = "green")
+
+diag (sd) <- colMins (laser)[[]]
+zero <- rmvnorm (n = nrow (laser), sigma=sd) 
+points (log10 (svd (zero)$d), pch = 20, cex = 0.5, col = "green")
+@
+
+HFC:
+<<>>=
+hfc (laser [[]], alpha = c(.33, .1,.05,.01, .001))
+@
+
+
+Winter 1999:
+<<>>=
+
+pca <- prcomp (laser, center = TRUE)
+plot (decomposition (laser, t (pca$rotation [,1:10])), stacked = T)
+plot (pca$x [,1:2])
+lines (pca$x [,1:2])
+
+pairs (pca$x [, 1: 4], panel = function (x, ...) {points (x, ..., type = "b")}, pch = 19, col = alois.palette (nrow (laser)))
+
+e <- nfindr99 (laser [[]], p=2)
+plot (decomposition (laser, e$data [e$indices,]), col = 1 : 2)
+
+matplot (laser$t / 60, predict (e), type = "l", lty = 1, main = "N-FINDR Winter1999", xlab = "t / min")
+@
+
+<<>>=
+e <- nfindr99 (laser [[]], p=3)
+plot (decomposition (laser, e$data [e$indices,]), stacked = T)
+
+matplot (laser$t / 60, predict (e), type = "l", lty = 1, main = "N-FINDR Winter1999", xlab = "t / min")
+@
+
+<<>>=
+if (require ("rgl")) {
+  plot3d (pca$x [,1:3], col = alois.palette (nrow (laser)))
+  lines3d (pca$x [,1:3], col = alois.palette (nrow (laser)))
+  spheres3d (pca$x [e$indices,1:3], radius= diff (range (pca$x[,1:3]))/50, col = seq_along (e$indices) + 1)
+  
+  conn <- expand.grid (start = seq_along (e$indices), end = seq_along (e$indices))
+  conn <- conn [conn$start < conn$end,]
+  conn <- as.numeric (t (conn))
+  segments3d (pca$x [e$indices [conn],])
+}
+@
+
+\end{document}

@@ -1,0 +1,79 @@
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{analyse hyperSpec's chondro data set with spectral unmixing}
+%\VignetteDepends{hyperSpec}
+\documentclass[DIV13, 10pt, headings = small]{scrartcl}
+\begin{document}
+<<initknitr, echo = FALSE, message=FALSE, results='hide'>>=
+knitr::opts_knit$set (self.contained=FALSE)
+knitr::opts_chunk$set (fig.width=10, fig.height=6)
+@
+<<init>>=
+require ("hyperSpec")
+require ("hyperSpec.matrixStats")
+require ("spec.unmixing")
+@
+
+<<>>=
+chondro <- chondro - spc.fit.poly.below (chondro)
+chondro <- sweep (chondro, 1, rowMeans (chondro), `/`)
+chondro <- sweep (chondro, 2, quantile (chondro, 0.05), `-`)
+chondro <- chondro [! is.na (chondro$clusters)]
+@
+
+Numerical rank of matrix:
+<<>>=
+plot (log10 (svd (chondro [[]])$d), pch = 20, xlim = c (0, 25))
+
+zero <- sample (0:1, length (chondro [[]]), replace = TRUE) * .Machine$double.eps
+dim (zero) <- dim (chondro [[]])
+#abline (h = log10 (svd (zero)$d [1]))
+points (log10 (svd (zero)$d), pch = 20, cex = 0.5, col = "red")
+
+zero <- rnorm (length (chondro [[]]), sd = 0.0025) 
+dim (zero) <- dim (chondro [[]])
+points (log10 (svd (zero)$d), pch = 20, cex = 0.5, col = "green")
+@
+
+<<>>=
+plot (log10 (svd (hyperSpec::chondro [[]])$d[1:11]), pch = 20)
+@
+
+<<>>=
+plot (chondro)
+plotmap (chondro [,, 785], col.regions = alois.palette)
+plotmap (chondro [,, 937], col.regions = alois.palette)
+plotmap (chondro [,, 1090], col.regions = alois.palette)
+plotmap (chondro [,, 1295], col.regions = alois.palette)
+@
+
+Winter 1999:
+<<>>=
+pca <- prcomp (chondro, center = TRUE)
+plot (decomposition (chondro, t (pca$rotation [,1:10])), stacked = T)
+plot (pca$x [,1:2])
+
+e <- nfindr99 (chondro, p=7)
+endmembers <- decomposition (chondro, e$data [e$indices,])
+plot (endmembers, stacked = T)
+
+cols <- rep (1, nrow (chondro))
+cols [e$indices] <- seq_along (e$indices) + 1
+pairs (pca$x [, 1:3], col = cols, pch = 19, cex = 0.75)
+
+abundances <- decomposition (chondro, predict (e))
+plotmap (abundances, spc ~ x * y | .wavelength, col.regions = alois.palette ())
+@
+
+<<>>=
+if (require ("rgl")) {
+  plot3d (pca$x [,1:3])
+  spheres3d (pca$x [e$indices,1:3], radius= diff (range (pca$x[,1:3]))/50, col = seq_along (e$indices) + 1)
+  
+  conn <- expand.grid (start = seq_along (e$indices), end = seq_along (e$indices))
+  conn <- conn [conn$start < conn$end,]
+  conn <- as.numeric (t (conn))
+  
+  segments3d (pca$x [e$indices [conn],])
+}
+@
+\end{document}

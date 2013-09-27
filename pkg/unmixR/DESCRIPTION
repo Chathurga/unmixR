@@ -1,0 +1,42 @@
+Package: unmixR
+Type: Package
+Title: Spectral Unmixing Methods
+Version: 1.0
+Date: 2013-06-19
+Author: Conor McManus
+Maintainer: Conor McManus <chathurga@gmail.com>
+Description: Implements the N-FINDR and Vertex Component Analysis algorithms
+    to recover pure component spectra and their respective concentrations
+    from a set of measured spectra.
+License: GPL (>= 3)
+Depends:
+    hyperSpec,
+    MASS,
+    nnls
+Suggests:
+    knitr,
+    svUnit
+VignetteBuilder: knitr
+Collate:
+    'unmixR-package.R'
+    'nfindr.R'
+    'nfindr.default.R'
+    'nfindr.formula.R'
+    'nfindr99.R'
+    'nfindrLDU.R'
+    'nfindrSeqLDU.R'
+    'nfindrCB.R'
+    'nfindrBrute.R'
+    'vca.R'
+    'vca.default.R'
+    'vca.formula.R'
+    'vca05.R'
+    'vcaLopez.R'
+    'vcaMod.R'
+    'estSNR.R'
+    'predict.R'
+    'endmembers.R'
+    'simplex.R'
+    'unittests.R'
+    'repvec.row.R'
+    'repvec.col.R'
