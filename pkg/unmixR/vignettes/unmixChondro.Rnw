@@ -82,9 +82,6 @@ pca <- prcomp (chondro, center = TRUE)
 x <- pca$x [,1:7]
 i <- sample (nrow (x), 8)
 system.time (model <- nfindr99 (x, p = 8, i))
-system.time (model <- nfindrCB (x, p = 8, i))
-
-times <- microbenchmark (nfindr99 (x, p = 8, i), nfindrCB (x, p = 8, i), times=5)
 
 @
 \end{document}

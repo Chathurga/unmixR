@@ -25,7 +25,6 @@ Collate:
     'nfindr99.R'
     'nfindrLDU.R'
     'nfindrSeqLDU.R'
-    'nfindrCB.R'
     'nfindrBrute.R'
     'vca.R'
     'vca.default.R'
