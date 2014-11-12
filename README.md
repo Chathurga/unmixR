@@ -3,6 +3,11 @@
 
 `unmixR is a WORK IN PROGRESS`.  The fundamental structures & behavior are changing frequently.
 
+*Installation:* works easies using `devtools::install_github`:
+
+    install_github (repo="Chathurga/unmixR/pkg/unmixR")
+
+
 `unmixR` is supported by [Google Summer of Code](http://www.google-melange.com/gsoc/homepage/google/gsoc2013).  Thank you!
 
 Note: hyperspectral data are also called 'imaging spectroscopy' and 'imaging spectrometer data' depending upon the discipline.  Such data consists of spectra collected over an x, y grid.  Data sets like this are found in airborne land imaging studies, biomedical studies and art history investigations.  The spectra are often visible, infrared, near-infrared, raman spectra or mass spectrometer data sets.
