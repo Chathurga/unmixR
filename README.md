@@ -5,9 +5,10 @@
 
 **Installation:** works easiest using `devtools::install_github`:
 
-    require ("devtools")
-    install_github (repo="Chathurga/unmixR/pkg/unmixR")
-
+```r
+require ("devtools")
+install_github (repo="Chathurga/unmixR/pkg/unmixR")
+```
 
 `unmixR` is supported by [Google Summer of Code](http://www.google-melange.com/gsoc/homepage/google/gsoc2013).  Thank you!
 
