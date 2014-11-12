@@ -1,10 +1,11 @@
 ### unmixR
 #### An R package for unmixing of hyperspectral images
 
-`unmixR is a WORK IN PROGRESS`.  The fundamental structures & behavior are changing frequently.
+`unmixR` is a **WORK IN PROGRESS**.  The fundamental structures & behavior may change frequently. Use at your own risk.
 
-*Installation:* works easies using `devtools::install_github`:
+**Installation:** works easiest using `devtools::install_github`:
 
+    require ("devtools")
     install_github (repo="Chathurga/unmixR/pkg/unmixR")
 
 
