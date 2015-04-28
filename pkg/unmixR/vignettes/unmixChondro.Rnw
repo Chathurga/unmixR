@@ -9,14 +9,13 @@ knitr::opts_chunk$set (fig.width=10, fig.height=6)
 @
 <<init>>=
 require ("hyperSpec")
-require ("hyperSpec.matrixStats")
 require ("unmixR")
 @
 
 <<>>=
 chondro <- chondro - spc.fit.poly.below (chondro)
-chondro <- sweep (chondro, 1, rowMeans (chondro), `/`)
-chondro <- sweep (chondro, 2, quantile (chondro, 0.05), `-`)
+chondro <- chondro / rowMeans (chondro)
+chondro <- chondro - quantile (chondro, 0.05)
 chondro <- chondro [! is.na (chondro$clusters)]
 @
 
