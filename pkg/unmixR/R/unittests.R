@@ -1,12 +1,12 @@
 ##' Run the unit tests
 ##'
-##' Run the unit tests attached to the functions via \link[svUnit]{svUnit} 
+##' Run the unit tests attached to the functions via \link[svUnit]{svUnit}
 ##' @return invisibly \code{TRUE} if the tests pass, \code{NA} if \link[svUnit]{svUnit} is not
 ##' available. Stops if errors are encountered.
 ##' @author Claudia Beleites
-##' @seealso  \link[svUnit]{svUnit} 
+##' @seealso  \link[svUnit]{svUnit}
 ##' @keywords programming utilities
-##' @export 
+##' @export
 ##' @include unmixR-package.R
 
 unmixR.unittest <- function () {
@@ -14,13 +14,13 @@ unmixR.unittest <- function () {
     warning("svUnit required to run the unit tests.")
     return(NA)
   }
-  
+
   tests <- unlist(eapply(env=getNamespace ("unmixR"), FUN=is.test, all.names=TRUE))
   tests <- names(tests[tests])
   tests <- sapply(tests, get, envir=getNamespace ("unmixR"))
 
   clearLog()
-  
+
   warnlevel <- options()$warn
   options(warn=0)
   for (t in seq_along(tests)) {
@@ -39,9 +39,12 @@ unmixR.unittest <- function () {
 }
 
 ##' test data for unit tests
-.C <- expand.grid ( 0 : 3, 0 : 3) 
+##' @noRd
+{
+.C <- expand.grid ( 0 : 3, 0 : 3)
 .C [, 3] <- 3 - rowSums (.C)
 .C <- as.matrix (.C [.C [, 3] >= 0,])
 .testdata <- data.frame (a = 1 : 10, x = I (.C))
 rm (.C)
 .correct <- c (1, 4, 10)
+}
