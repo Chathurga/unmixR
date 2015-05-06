@@ -1,5 +1,12 @@
 .predict <- function(object, newdata=object$data, ...) {
-  endmembers <- t(newdata[object$indices,])
+
+  if (! is.matrix (newdata))
+    newdata <- as.matrix (newdata)
+
+  endmembers <- endmembers (object)
+  if (! is.matrix (endmembers))
+    endmembers <- as.matrix (endmembers)
+  endmembers <- t (endmembers)
 
   t(apply(newdata, 1, function(spectrum) {
     nnls(endmembers, spectrum)$x
@@ -21,14 +28,12 @@
 ##' @return A matrix where the abundances for an endmember are returned
 ##'   column-wise. Each value is in the range \code{0 - 1}
 ##'
-##' @name predict
-##' @rdname predict
-##' @method predict nfindr
+##' @rdname nfindr
+##' @export
 
 predict.nfindr <- .predict
 
-##' @name predict
-##' @rdname predict
-##' @method predict vca
+##' @rdname vca
+##' @export
 
 predict.vca <- .predict
