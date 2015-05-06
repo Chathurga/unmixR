@@ -1,6 +1,7 @@
 ##' @name vca
 ##' @rdname vca
-##' @method vca default
+##' @export
+##' @include vca.R
 
 vca.default <- function(data, p, method= c("Mod", "Lopez", "05"), seed=NULL, ...) {
 
@@ -52,12 +53,14 @@ vca.default <- function(data, p, method= c("Mod", "Lopez", "05"), seed=NULL, ...
 
   for (m in methods) {
     ## .testdata has 3 components, so picking 2 out of 3
-    checkTrue (all (vca (.testdata$x, p = 2, method = m)$indices %in% .correct),
-               msg = sprintf ("%s: .testdata, p = 2", m))
+    model <- vca (.testdata$x, p = 2, method = m)
+    checkTrue (all (model$indices %in% .correct),
+               msg = sprintf ("%s: .testdata, p = 2 yields %s", m, paste (model$indices, collapse = " ")))
 
     ## all 3 components should be recovered, vca output is sorted.
-    checkEquals (vca (.testdata$x, p = 3, method = m)$indices, .correct,
-                 msg = sprintf ("%s: .testdata, p = 3", m))
+    model <- vca (.testdata$x, p = 3, method = m)
+    checkEquals (model$indices, .correct,
+                 msg = sprintf ("%s: .testdata, p = 2 yields %s", m, paste (model$indices, collapse = " ")))
   }
 
   # test: if hyperSpec is available, test on hyperSpec object

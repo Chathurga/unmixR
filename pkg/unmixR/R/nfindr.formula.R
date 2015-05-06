@@ -1,10 +1,13 @@
 ##' @name nfindr
 ##' @rdname nfindr
-##' @method nfindr formula
+##' @include nfindr.default.R
+#' @export
 
 nfindr.formula <- function(formula, frame, p,
-                           method="LDU", indices=sample(nrow(data), p), ...,
+                           method="LDU", indices = sample (nrow (data), p), ...,
                            drop=FALSE) {
-  data <- model.matrix(formula, frame)
-  nfindr(data, p, method, indices, ..., drop=drop)
+
+  data <- model.matrix (formula, frame)
+
+  nfindr (data, p, method, indices, ..., drop=drop)
 }

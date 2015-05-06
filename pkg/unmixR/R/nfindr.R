@@ -42,7 +42,7 @@
 ##' @export
 ##' @include unmixR-package.R
 
-nfindr <- function(...) {
+nfindr <- function (x, ...) {
   UseMethod("nfindr")
 }
 
@@ -67,7 +67,7 @@ nfindr <- function(...) {
 
   # test: all N-FINDR methods produce the same output
 
-  methods <- c("99", "LDU", "SeqLDU", "CB", "Brute")
+  methods <- c("99", "LDU", "SeqLDU", "Brute")
 
   outputs <- sapply(1:4, function(i) {
     nfindr(data, p, methods[i])$indices
@@ -79,4 +79,7 @@ nfindr <- function(...) {
 
   output.formula <- nfindr(~ 0 + ., as.data.frame(data), p)$indices
   checkEquals(output.formula, output)
+
+  # test: check other (hyperSpec) objects
+#  nfindr (laser, p = 2)
 }

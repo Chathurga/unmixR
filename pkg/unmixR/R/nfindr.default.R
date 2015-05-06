@@ -1,15 +1,19 @@
 ##' @name nfindr
 ##' @rdname nfindr
-##' @method nfindr default
+##' @include nfindr.R
+##' @export
+
 
 nfindr.default <- function(data, p,
                            method="LDU", indices=sample(nrow(data), p), ...,
                            drop=FALSE) {
-  methods <- c("99", "LDU", "SeqLDU", "CB", "Brute") # valid methods
+
+  methods <- c("99", "LDU", "SeqLDU", "Brute") # valid methods
+  ## TODO: make automatic check
 
   # check for p being with the valid range, >= 2
   if (!is.numeric(p) || p < 2) {
-    stop("p must be a positive integer greater than 2")
+    stop("p must be a positive integer >= 2")
   }
 
   # check if the method passed in is valid
@@ -18,12 +22,14 @@ nfindr.default <- function(data, p,
     stop(paste("Invalid option for method parameter, try:", methodsStr))
   }
 
+  # keep original data
+  orig <- data
+
   # transform the input into a matrix
-  data <- as.matrix(data)
+  data <- as.matrix (data)
 
   # reduce the dimensionality of the data using PCA
   # do nothing if the data was passed in already reduced
-  orig <- data
   if (ncol(data) != p - 1) {
     data <- prcomp(data)$x[, 1:(p-1), drop=FALSE]
   }
@@ -33,7 +39,7 @@ nfindr.default <- function(data, p,
   # call the function to get the indices of the endmembers
   indices <- nfindrFunc(data, p, indices, ...)
   # sort the indices to normalise the order between runs
-  indices <- sort(indices)
+  indices <- sort (indices)
 
   # return a model
   structure(list(
