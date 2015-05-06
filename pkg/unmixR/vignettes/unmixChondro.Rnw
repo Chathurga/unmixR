@@ -52,7 +52,7 @@ plot (decomposition (chondro, t (pca$rotation [,1:10])), stacked = T)
 plot (pca$x [,1:2], asp = 1)
 
 e <- nfindr (chondro, p = 4, method = "99")
-endmembers <- decomposition (chondro, e$data [e$indices,])
+endmembers <- endmembers (e)
 plot (endmembers, stacked = T)
 
 cols <- rep (8, nrow (chondro))
@@ -80,7 +80,7 @@ require ("microbenchmark")
 pca <- prcomp (chondro, center = TRUE)
 x <- pca$x [,1:7]
 i <- sample (nrow (x), 8)
-system.time (model <- nfindr99 (x, p = 8, i))
+system.time (model <- unmixR:::nfindr99 (x, p = 8, i))
 
 @
 \end{document}
