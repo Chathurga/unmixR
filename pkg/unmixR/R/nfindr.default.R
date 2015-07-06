@@ -8,19 +8,19 @@ nfindr.default <- function(data, p,
                            method="LDU", indices=sample(nrow(data), p), ...,
                            drop=FALSE) {
 
-  methods <- c("99", "LDU", "SeqLDU", "Brute") # valid methods
-  ## TODO: make automatic check
+  ## get the selected nfindr method
+  nfindrFunc <- get0 (paste0 ("nfindr", method), mode = "function")
 
-  # check for p being with the valid range, >= 2
+  # check if the method passed in was found
+  if (is.null (nfindrFunc)) {
+    stop ('Invalid option for method parameter, try: "99", "LDU", "SeqLDU", "Brute"')
+  }
+
+  ## check for p being with the valid range, >= 2
   if (!is.numeric(p) || p < 2) {
     stop("p must be a positive integer >= 2")
   }
 
-  # check if the method passed in is valid
-  if (!method %in% methods) {
-    methodsStr <- paste(methods, collapse=", ")
-    stop(paste("Invalid option for method parameter, try:", methodsStr))
-  }
 
   # keep original data
   orig <- data
@@ -34,8 +34,6 @@ nfindr.default <- function(data, p,
     data <- prcomp(data)$x[, 1:(p-1), drop=FALSE]
   }
 
-  # get the selected nfindr method
-  nfindrFunc <- get(paste("nfindr", method, sep=""))
   # call the function to get the indices of the endmembers
   indices <- nfindrFunc(data, p, indices, ...)
   # sort the indices to normalise the order between runs
