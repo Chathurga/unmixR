@@ -50,6 +50,12 @@ vcaMod <- function(data, p) {
     v <- crossprod(f, Y)
 
     index <- which.max(v) # always appears to produce the same index
+
+    if (unmixR:::debuglevel >= 1L){
+      print (which.max (v))
+      print (which.min (v))
+    }
+
     indices[i] <- index
 
     E[,i+1] <- Y[,index]

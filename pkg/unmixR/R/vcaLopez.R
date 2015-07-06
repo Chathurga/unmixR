@@ -36,6 +36,12 @@ vcaLopez <- function(data, p) {
     v <- crossprod(f, Y)
 
     index <- which.max(v)
+
+    if (unmixR:::debuglevel >= 1L){
+      print (which.max (v))
+      print (which.min (v))
+    }
+
     indices[i] <- index
     E[, i] <- Y[, index]
   }

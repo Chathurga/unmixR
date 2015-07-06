@@ -63,6 +63,12 @@ vca05 <- function(data, p, SNR=estSNR(data, p)) {
 
     v <- abs(crossprod(f, y))
     indices[i] <- which.max(v) # get index of max value
+
+    if (unmixR:::debuglevel >= 1L){
+      print (which.max (v))
+      print (which.min (v))
+    }
+
     A[,i] <- y[, indices[i]]
   }
 
