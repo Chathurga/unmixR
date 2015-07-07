@@ -37,7 +37,7 @@ vcaLopez <- function(data, p) {
 
     index <- which.max(v)
 
-    if (unmixR:::debuglevel >= 1L){
+    if (.options ("debuglevel") >= 1L){
       print (which.max (v))
       print (which.min (v))
     }

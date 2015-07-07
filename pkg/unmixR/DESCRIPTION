@@ -16,7 +16,8 @@ Depends:
 Suggests:
     knitr
 Imports:
-    svUnit
+    svUnit,
+    settings
 VignetteBuilder: knitr
 Collate:
     'endmembers.R'
@@ -29,6 +30,7 @@ Collate:
     'nfindrBrute.R'
     'nfindrLDU.R'
     'nfindrSeqLDU.R'
+    'options.R'
     'predict.R'
     'repvec.col.R'
     'repvec.row.R'

@@ -51,7 +51,7 @@ vcaMod <- function(data, p) {
 
     index <- which.max(v) # always appears to produce the same index
 
-    if (unmixR:::debuglevel >= 1L){
+    if (.options ("debuglevel") >= 1L){
       print (which.max (v))
       print (which.min (v))
     }
