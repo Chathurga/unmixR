@@ -14,28 +14,31 @@ Depends:
     MASS,
     nnls
 Suggests:
-    knitr,
-    svUnit
+    knitr
+Imports:
+    svUnit,
+    settings
 VignetteBuilder: knitr
 Collate:
+    'endmembers.R'
+    'estSNR.R'
     'unmixR-package.R'
     'nfindr.R'
     'nfindr.default.R'
     'nfindr.formula.R'
     'nfindr99.R'
+    'nfindrBrute.R'
     'nfindrLDU.R'
     'nfindrSeqLDU.R'
-    'nfindrBrute.R'
+    'options.R'
+    'predict.R'
+    'repvec.col.R'
+    'repvec.row.R'
+    'simplex.R'
+    'unittests.R'
     'vca.R'
     'vca.default.R'
     'vca.formula.R'
     'vca05.R'
     'vcaLopez.R'
     'vcaMod.R'
-    'estSNR.R'
-    'predict.R'
-    'endmembers.R'
-    'simplex.R'
-    'unittests.R'
-    'repvec.row.R'
-    'repvec.col.R'
